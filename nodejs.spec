@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 6.0.0
-Release  : 11
+Release  : 12
 URL      : https://nodejs.org/dist/v6.0.0/node-v6.0.0.tar.gz
 Source0  : https://nodejs.org/dist/v6.0.0/node-v6.0.0.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
