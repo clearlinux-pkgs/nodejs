@@ -4,17 +4,19 @@
 #
 Name     : nodejs
 Version  : 7.1.0
-Release  : 26
+Release  : 27
 URL      : https://nodejs.org/dist/v7.1.0/node-v7.1.0.tar.xz
 Source0  : https://nodejs.org/dist/v7.1.0/node-v7.1.0.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
 Group    : Development/Tools
-License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-NetBSD BSD-3-Clause HPND ISC MIT MPL-2.0 OpenSSL Unlicense WTFPL bzip2-1.0.6
+License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-NetBSD BSD-3-Clause HPND ICU ISC MIT MPL-2.0 NCSA OpenSSL Unlicense WTFPL bzip2-1.0.6
 Requires: nodejs-bin
 Requires: nodejs-data
 Requires: nodejs-doc
 BuildRequires : MarkupSafe
 BuildRequires : cmake
+BuildRequires : cmake-dev
+BuildRequires : openssl-dev
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python-dev
@@ -78,7 +80,7 @@ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-%configure --disable-static
+%configure --disable-static --shared-openssl --shared-zlib
 make V=1  %{?_smp_mflags}
 
 %install
@@ -2880,100 +2882,6 @@ rm -rf %{buildroot}
 /usr/include/node/node_buffer.h
 /usr/include/node/node_object_wrap.h
 /usr/include/node/node_version.h
-/usr/include/node/openssl/aes.h
-/usr/include/node/openssl/archs/BSD-x86/opensslconf.h
-/usr/include/node/openssl/archs/BSD-x86_64/opensslconf.h
-/usr/include/node/openssl/archs/VC-WIN32/opensslconf.h
-/usr/include/node/openssl/archs/VC-WIN64A/opensslconf.h
-/usr/include/node/openssl/archs/aix-gcc/opensslconf.h
-/usr/include/node/openssl/archs/aix64-gcc/opensslconf.h
-/usr/include/node/openssl/archs/darwin-i386-cc/opensslconf.h
-/usr/include/node/openssl/archs/darwin64-x86_64-cc/opensslconf.h
-/usr/include/node/openssl/archs/linux-aarch64/opensslconf.h
-/usr/include/node/openssl/archs/linux-armv4/opensslconf.h
-/usr/include/node/openssl/archs/linux-elf/opensslconf.h
-/usr/include/node/openssl/archs/linux-ppc/opensslconf.h
-/usr/include/node/openssl/archs/linux-ppc64/opensslconf.h
-/usr/include/node/openssl/archs/linux-x32/opensslconf.h
-/usr/include/node/openssl/archs/linux-x86_64/opensslconf.h
-/usr/include/node/openssl/archs/linux32-s390x/opensslconf.h
-/usr/include/node/openssl/archs/linux64-s390x/opensslconf.h
-/usr/include/node/openssl/archs/solaris-x86-gcc/opensslconf.h
-/usr/include/node/openssl/archs/solaris64-x86_64-gcc/opensslconf.h
-/usr/include/node/openssl/asn1.h
-/usr/include/node/openssl/asn1_mac.h
-/usr/include/node/openssl/asn1t.h
-/usr/include/node/openssl/bio.h
-/usr/include/node/openssl/blowfish.h
-/usr/include/node/openssl/bn.h
-/usr/include/node/openssl/buffer.h
-/usr/include/node/openssl/camellia.h
-/usr/include/node/openssl/cast.h
-/usr/include/node/openssl/cmac.h
-/usr/include/node/openssl/cms.h
-/usr/include/node/openssl/comp.h
-/usr/include/node/openssl/conf.h
-/usr/include/node/openssl/conf_api.h
-/usr/include/node/openssl/crypto.h
-/usr/include/node/openssl/des.h
-/usr/include/node/openssl/des_old.h
-/usr/include/node/openssl/dh.h
-/usr/include/node/openssl/dsa.h
-/usr/include/node/openssl/dso.h
-/usr/include/node/openssl/dtls1.h
-/usr/include/node/openssl/e_os2.h
-/usr/include/node/openssl/ebcdic.h
-/usr/include/node/openssl/ec.h
-/usr/include/node/openssl/ecdh.h
-/usr/include/node/openssl/ecdsa.h
-/usr/include/node/openssl/engine.h
-/usr/include/node/openssl/err.h
-/usr/include/node/openssl/evp.h
-/usr/include/node/openssl/hmac.h
-/usr/include/node/openssl/idea.h
-/usr/include/node/openssl/krb5_asn.h
-/usr/include/node/openssl/kssl.h
-/usr/include/node/openssl/lhash.h
-/usr/include/node/openssl/md4.h
-/usr/include/node/openssl/md5.h
-/usr/include/node/openssl/mdc2.h
-/usr/include/node/openssl/modes.h
-/usr/include/node/openssl/obj_mac.h
-/usr/include/node/openssl/objects.h
-/usr/include/node/openssl/ocsp.h
-/usr/include/node/openssl/opensslconf.h
-/usr/include/node/openssl/opensslv.h
-/usr/include/node/openssl/ossl_typ.h
-/usr/include/node/openssl/pem.h
-/usr/include/node/openssl/pem2.h
-/usr/include/node/openssl/pkcs12.h
-/usr/include/node/openssl/pkcs7.h
-/usr/include/node/openssl/pqueue.h
-/usr/include/node/openssl/rand.h
-/usr/include/node/openssl/rc2.h
-/usr/include/node/openssl/rc4.h
-/usr/include/node/openssl/ripemd.h
-/usr/include/node/openssl/rsa.h
-/usr/include/node/openssl/safestack.h
-/usr/include/node/openssl/seed.h
-/usr/include/node/openssl/sha.h
-/usr/include/node/openssl/srp.h
-/usr/include/node/openssl/srtp.h
-/usr/include/node/openssl/ssl.h
-/usr/include/node/openssl/ssl2.h
-/usr/include/node/openssl/ssl23.h
-/usr/include/node/openssl/ssl3.h
-/usr/include/node/openssl/stack.h
-/usr/include/node/openssl/symhacks.h
-/usr/include/node/openssl/tls1.h
-/usr/include/node/openssl/ts.h
-/usr/include/node/openssl/txt_db.h
-/usr/include/node/openssl/ui.h
-/usr/include/node/openssl/ui_compat.h
-/usr/include/node/openssl/whrlpool.h
-/usr/include/node/openssl/x509.h
-/usr/include/node/openssl/x509_vfy.h
-/usr/include/node/openssl/x509v3.h
 /usr/include/node/pthread-barrier.h
 /usr/include/node/stdint-msvc2008.h
 /usr/include/node/tree.h
@@ -2998,8 +2906,6 @@ rm -rf %{buildroot}
 /usr/include/node/v8-version.h
 /usr/include/node/v8.h
 /usr/include/node/v8config.h
-/usr/include/node/zconf.h
-/usr/include/node/zlib.h
 
 %files doc
 %defattr(-,root,root,-)
