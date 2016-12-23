@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 7.2.0
-Release  : 29
+Release  : 30
 URL      : https://nodejs.org/dist/v7.2.0/node-v7.2.0.tar.xz
 Source0  : https://nodejs.org/dist/v7.2.0/node-v7.2.0.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
