@@ -4,12 +4,12 @@
 #
 Name     : nodejs
 Version  : 8.5.0
-Release  : 37
+Release  : 38
 URL      : https://nodejs.org/dist/latest-v8.x/node-v8.5.0.tar.xz
 Source0  : https://nodejs.org/dist/latest-v8.x/node-v8.5.0.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
 Group    : Development/Tools
-License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-NetBSD BSD-3-Clause HPND ISC MIT MITNFA MPL-2.0 OpenSSL Unlicense WTFPL bzip2-1.0.6
+License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause HPND ISC MIT MITNFA MPL-2.0 OpenSSL Unlicense WTFPL bzip2-1.0.6
 Requires: nodejs-bin
 Requires: nodejs-data
 Requires: nodejs-doc
@@ -77,7 +77,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505248503
+export SOURCE_DATE_EPOCH=1505787064
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -86,7 +86,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-common -fno-math-errno 
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1505248503
+export SOURCE_DATE_EPOCH=1505787064
 rm -rf %{buildroot}
 %make_install
 
