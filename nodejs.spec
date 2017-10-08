@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 6.11.4
-Release  : 41
+Release  : 42
 URL      : https://nodejs.org/dist/latest-v6.x/node-v6.11.4.tar.xz
 Source0  : https://nodejs.org/dist/latest-v6.x/node-v6.11.4.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -13,8 +13,9 @@ License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-NetBSD BSD-3-Clause
 Requires: nodejs-bin
 Requires: nodejs-data
 Requires: nodejs-doc
-Requires: MarkupSafe
+Requires: MarkupSafe-python3
 BuildRequires : MarkupSafe
+BuildRequires : MarkupSafe-python3
 BuildRequires : cmake
 BuildRequires : openssl-dev
 BuildRequires : pbr
@@ -80,7 +81,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507417882
+export SOURCE_DATE_EPOCH=1507497831
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -89,7 +90,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1507417882
+export SOURCE_DATE_EPOCH=1507497831
 rm -rf %{buildroot}
 %make_install
 
@@ -875,11 +876,9 @@ rm -rf %{buildroot}
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/OWNERS
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/PRESUBMIT.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/PRESUBMIT.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/PRESUBMIT.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/aosp_manifest.xml
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/buildbot_run.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/buildbot_run.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/buildbot_run.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/commit_queue/OWNERS
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/commit_queue/README
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/commit_queue/cq_config.json
@@ -889,138 +888,94 @@ rm -rf %{buildroot}
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp.bat
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyptest.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyptest.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/gyptest.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSNew.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSNew.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSNew.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSProject.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSProject.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSProject.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSToolFile.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSToolFile.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSToolFile.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUserFile.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUserFile.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUserFile.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUtil.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUtil.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUtil.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSVersion.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSVersion.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSVersion.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__init__.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__init__.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__init__.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__init__.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__init__.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__init__.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/analyzer.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/analyzer.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/analyzer.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/android.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/android.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/android.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/cmake.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/cmake.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/cmake.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/dump_dependency_json.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/dump_dependency_json.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/dump_dependency_json.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/eclipse.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/eclipse.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/eclipse.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/gypd.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/gypd.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/gypd.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/gypsh.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/gypsh.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/gypsh.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/xcode.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/xcode.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/xcode.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/xcode_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/xcode_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/xcode_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/input.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/input.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/input.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/input_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/input_test.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/input_test.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/msvs_emulation.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/msvs_emulation.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/msvs_emulation.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/ninja_syntax.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/ninja_syntax.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/ninja_syntax.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/ordered_dict.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/ordered_dict.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/ordered_dict.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/simple_copy.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/simple_copy.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/simple_copy.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/win_tool.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/win_tool.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/win_tool.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcode_ninja.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcode_ninja.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcode_ninja.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcodeproj_file.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcodeproj_file.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xcodeproj_file.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xml_fix.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xml_fix.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/xml_fix.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/samples/samples
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/samples/samples.bat
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/setup.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/setup.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/setup.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/README
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/Xcode/README
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/Xcode/Specifications/gyp.pbfilespec
@@ -1033,16 +988,12 @@ rm -rf %{buildroot}
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/emacs/testdata/media.gyp.fontified
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/graphviz.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/graphviz.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/graphviz.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_gyp.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_gyp.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_gyp.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_sln.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_sln.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_sln.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_vcproj.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_vcproj.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/tools/pretty_vcproj.pyo
 /usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/lib/clean.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/lib/configure.js
@@ -2872,7 +2823,6 @@ rm -rf %{buildroot}
 /usr/share/doc/node/gdbinit
 /usr/share/doc/node/lldb_commands.py
 /usr/share/doc/node/lldb_commands.pyc
-/usr/share/doc/node/lldb_commands.pyo
 /usr/share/doc/node/lldbinit
 /usr/share/systemtap/tapset/node.stp
 
