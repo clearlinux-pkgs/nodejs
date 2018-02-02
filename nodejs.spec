@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 8.9.1
-Release  : 45
+Release  : 46
 URL      : https://nodejs.org/dist/v8.9.1/node-v8.9.1.tar.gz
 Source0  : https://nodejs.org/dist/v8.9.1/node-v8.9.1.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
