@@ -1,1 +1,1 @@
---shared-openssl --shared-zlib
+--shared-openssl --shared-zlib PYTHON=/usr/bin/python2

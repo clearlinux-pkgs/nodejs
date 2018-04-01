@@ -4,12 +4,12 @@
 #
 Name     : nodejs
 Version  : 8.11.1
-Release  : 49
+Release  : 50
 URL      : https://nodejs.org/dist/v8.11.1/node-v8.11.1.tar.gz
 Source0  : https://nodejs.org/dist/v8.11.1/node-v8.11.1.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
 Group    : Development/Tools
-License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-NetBSD BSD-3-Clause CC-BY-4.0 HPND ISC MIT MITNFA MPL-2.0 OpenSSL Unlicense bzip2-1.0.6
+License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause CC-BY-4.0 HPND ISC MIT MITNFA MPL-2.0 OpenSSL Unlicense bzip2-1.0.6
 Requires: nodejs-bin
 Requires: nodejs-doc
 Requires: nodejs-data
@@ -80,16 +80,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522598981
+export SOURCE_DATE_EPOCH=1522599825
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-%configure --disable-static --shared-openssl --shared-zlib
+%configure --disable-static --shared-openssl --shared-zlib PYTHON=/usr/bin/python2
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1522598981
+export SOURCE_DATE_EPOCH=1522599825
 rm -rf %{buildroot}
 %make_install
 
