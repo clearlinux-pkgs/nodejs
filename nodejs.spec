@@ -19,7 +19,7 @@ BuildRequires : cmake
 BuildRequires : openssl-dev
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : qtbase-dev
 BuildRequires : qtbase-extras
