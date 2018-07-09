@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 8.11.3
-Release  : 57
+Release  : 58
 URL      : https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
 Source0  : https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -101,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531155971
+export SOURCE_DATE_EPOCH=1531170780
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -110,7 +110,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1531155971
+export SOURCE_DATE_EPOCH=1531170780
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/nodejs
 cp LICENSE %{buildroot}/usr/share/doc/nodejs/LICENSE
@@ -4900,6 +4900,11 @@ cp deps/gtest/LICENSE %{buildroot}/usr/share/doc/nodejs/deps_gtest_LICENSE
 
 %files license
 %defattr(-,root,root,-)
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_LICENSE
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_boom_LICENSE
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_LICENSE
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_node_modules_boom_LICENSE
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_sntp_LICENSE
 /usr/share/doc/nodejs/LICENSE
 /usr/share/doc/nodejs/deps_gtest_LICENSE
 /usr/share/doc/nodejs/deps_http_parser_LICENSE-MIT
@@ -5178,12 +5183,7 @@ cp deps/gtest/LICENSE %{buildroot}/usr/share/doc/nodejs/deps_gtest_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_har-validator_node_modules_ajv_node_modules_json-schema-traverse_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_har-validator_node_modules_ajv_node_modules_json-stable-stringify_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_har-validator_node_modules_har-schema_LICENSE
-/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_LICENSE
-/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_boom_LICENSE
-/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_LICENSE
-/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_node_modules_boom_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_hoek_LICENSE
-/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_sntp_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_http-signature_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_http-signature_node_modules_jsprim_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_http-signature_node_modules_jsprim_node_modules_extsprintf_LICENSE

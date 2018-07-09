@@ -1,2 +1,8 @@
 # This file contains the output files that need %exclude. Full path
 # names, one per line.
+/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_boom_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_node_modules_boom_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_sntp_LICENSE
+
