@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 8.11.3
-Release  : 55
+Release  : 56
 URL      : https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
 Source0  : https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
