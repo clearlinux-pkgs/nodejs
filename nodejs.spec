@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 8.11.3
-Release  : 56
+Release  : 57
 URL      : https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
 Source0  : https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -101,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1529853827
+export SOURCE_DATE_EPOCH=1531155971
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -110,7 +110,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1529853827
+export SOURCE_DATE_EPOCH=1531155971
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/nodejs
 cp LICENSE %{buildroot}/usr/share/doc/nodejs/LICENSE
@@ -2385,9 +2385,6 @@ cp deps/gtest/LICENSE %{buildroot}/usr/share/doc/nodejs/deps_gtest_LICENSE
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/LICENSE
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/OWNERS
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/PRESUBMIT.py
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/__pycache__/PRESUBMIT.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/__pycache__/gyp_main.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/__pycache__/setup.cpython-36.pyc
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/aosp_manifest.xml
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/buildbot_run.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/buildbot/commit_queue/OWNERS
@@ -2408,35 +2405,12 @@ cp deps/gtest/LICENSE %{buildroot}/usr/share/doc/nodejs/deps_gtest_LICENSE
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSUtil.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/MSVSVersion.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__init__.py
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/MSVSNew.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/MSVSProject.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/MSVSSettings_test.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/MSVSToolFile.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/MSVSUserFile.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/MSVSUtil.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/common_test.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/easy_xml.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/easy_xml_test.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/input_test.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/mac_tool.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/msvs_emulation.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/ninja_syntax.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/ordered_dict.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/simple_copy.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/__pycache__/xml_fix.cpython-36.pyc
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/common_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__init__.py
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/__init__.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/eclipse.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/gypd.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/gypsh.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/msvs_test.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/ninja_test.cpython-36.pyc
-/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/__pycache__/xcode_test.cpython-36.pyc
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/analyzer.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/android.py
 /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/cmake.py
@@ -4920,7 +4894,6 @@ cp deps/gtest/LICENSE %{buildroot}/usr/share/doc/nodejs/deps_gtest_LICENSE
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/nodejs/*
-/usr/share/doc/node/__pycache__/lldb_commands.cpython-36.pyc
 /usr/share/doc/node/gdbinit
 /usr/share/doc/node/lldb_commands.py
 /usr/share/doc/node/lldbinit
