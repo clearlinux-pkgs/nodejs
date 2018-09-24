@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 8.12.0
-Release  : 65
+Release  : 66
 URL      : https://nodejs.org/dist/v8.12.0/node-v8.12.0.tar.gz
 Source0  : https://nodejs.org/dist/v8.12.0/node-v8.12.0.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -97,7 +97,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537806523
+export SOURCE_DATE_EPOCH=1537809435
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -106,7 +106,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1537806523
+export SOURCE_DATE_EPOCH=1537809435
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/nodejs
 cp LICENSE %{buildroot}/usr/share/doc/nodejs/LICENSE
@@ -3872,7 +3872,7 @@ cp tools/gyp/LICENSE %{buildroot}/usr/share/doc/nodejs/tools_gyp_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_xtend_LICENCE
 
 %files license
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %exclude /usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
 /usr/share/doc/nodejs/LICENSE
 /usr/share/doc/nodejs/deps_gtest_LICENSE
