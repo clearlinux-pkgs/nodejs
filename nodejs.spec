@@ -3943,7 +3943,7 @@ cp tools/gyp/LICENSE %{buildroot}/usr/share/doc/nodejs/tools_gyp_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_duplexer3_LICENSE.md
 /usr/share/doc/nodejs/deps_npm_node_modules_duplexify_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_LICENSE
-/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
 /usr/share/doc/nodejs/deps_npm_node_modules_editor_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_encoding_LICENSE
 /usr/share/doc/nodejs/deps_npm_node_modules_end-of-stream_LICENSE
