@@ -11,7 +11,6 @@ Summary  : Node.js is a platform for building fast, scalable network application
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 HPND ICU ISC MIT OpenSSL Unlicense Zlib bzip2-1.0.6
 Requires: nodejs-bin
-Requires: nodejs-license
 Requires: nodejs-man
 Requires: nodejs-data
 Requires: MarkupSafe-python3
@@ -37,7 +36,6 @@ applications that run across distributed devices.
 Summary: bin components for the nodejs package.
 Group: Binaries
 Requires: nodejs-data = %{version}-%{release}
-Requires: nodejs-license = %{version}-%{release}
 Requires: nodejs-man = %{version}-%{release}
 
 %description bin
@@ -71,13 +69,6 @@ Requires: nodejs-man = %{version}-%{release}
 %description doc
 doc components for the nodejs package.
 
-
-%package license
-Summary: license components for the nodejs package.
-Group: Default
-
-%description license
-license components for the nodejs package.
 
 
 %package man
