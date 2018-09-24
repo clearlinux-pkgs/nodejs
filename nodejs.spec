@@ -4,13 +4,14 @@
 #
 Name     : nodejs
 Version  : 8.12.0
-Release  : 64
+Release  : 65
 URL      : https://nodejs.org/dist/v8.12.0/node-v8.12.0.tar.gz
 Source0  : https://nodejs.org/dist/v8.12.0/node-v8.12.0.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 HPND ICU ISC MIT OpenSSL Unlicense Zlib bzip2-1.0.6
 Requires: nodejs-bin
+Requires: nodejs-license
 Requires: nodejs-man
 Requires: nodejs-data
 Requires: MarkupSafe-python3
@@ -36,6 +37,7 @@ applications that run across distributed devices.
 Summary: bin components for the nodejs package.
 Group: Binaries
 Requires: nodejs-data = %{version}-%{release}
+Requires: nodejs-license = %{version}-%{release}
 Requires: nodejs-man = %{version}-%{release}
 
 %description bin
@@ -70,6 +72,13 @@ Requires: nodejs-man = %{version}-%{release}
 doc components for the nodejs package.
 
 
+%package license
+Summary: license components for the nodejs package.
+Group: Default
+
+%description license
+license components for the nodejs package.
+
 
 %package man
 Summary: man components for the nodejs package.
@@ -88,7 +97,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537676863
+export SOURCE_DATE_EPOCH=1537806523
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -97,7 +106,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1537676863
+export SOURCE_DATE_EPOCH=1537806523
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/nodejs
 cp LICENSE %{buildroot}/usr/share/doc/nodejs/LICENSE
@@ -3847,11 +3856,396 @@ cp tools/gyp/LICENSE %{buildroot}/usr/share/doc/nodejs/tools_gyp_LICENSE
 
 %files doc
 %defattr(0644,root,root,0755)
-%doc /usr/share/doc/nodejs/*
 /usr/share/doc/node/gdbinit
 /usr/share/doc/node/lldb_commands.py
 /usr/share/doc/node/lldbinit
+/usr/share/doc/nodejs/deps_npm_node_modules_block-stream_LICENCE
+/usr/share/doc/nodejs/deps_npm_node_modules_builtins_License
+/usr/share/doc/nodejs/deps_npm_node_modules_combined-stream_License
+/usr/share/doc/nodejs/deps_npm_node_modules_config-chain_LICENCE
+/usr/share/doc/nodejs/deps_npm_node_modules_delayed-stream_License
+/usr/share/doc/nodejs/deps_npm_node_modules_delegates_License
+/usr/share/doc/nodejs/deps_npm_node_modules_form-data_License
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-client_node_modules_retry_License
+/usr/share/doc/nodejs/deps_npm_node_modules_promise-retry_node_modules_retry_License
+/usr/share/doc/nodejs/deps_npm_node_modules_retry_License
+/usr/share/doc/nodejs/deps_npm_node_modules_xtend_LICENCE
 
+%files license
+%defattr(-,root,root,-)
+%exclude /usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
+/usr/share/doc/nodejs/LICENSE
+/usr/share/doc/nodejs/deps_gtest_LICENSE
+/usr/share/doc/nodejs/deps_http_parser_LICENSE-MIT
+/usr/share/doc/nodejs/deps_icu-small_LICENSE
+/usr/share/doc/nodejs/deps_nghttp2_COPYING
+/usr/share/doc/nodejs/deps_node-inspect_LICENSE
+/usr/share/doc/nodejs/deps_npm_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_JSONStream_LICENSE.APACHE2
+/usr/share/doc/nodejs/deps_npm_node_modules_JSONStream_LICENSE.MIT
+/usr/share/doc/nodejs/deps_npm_node_modules_abbrev_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ajv_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ansi-align_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ansi-regex_license
+/usr/share/doc/nodejs/deps_npm_node_modules_ansi-styles_license
+/usr/share/doc/nodejs/deps_npm_node_modules_ansicolors_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ansistyles_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_aproba_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_archy_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_are-we-there-yet_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_asap_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_asn1_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_asynckit_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_aws-sign2_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_aws4_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_balanced-match_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_bin-links_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_block-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_bluebird_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_boxen_license
+/usr/share/doc/nodejs/deps_npm_node_modules_brace-expansion_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_builtin-modules_license
+/usr/share/doc/nodejs/deps_npm_node_modules_byline_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_byte-size_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_cacache_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_camelcase_license
+/usr/share/doc/nodejs/deps_npm_node_modules_caseless_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_chalk_license
+/usr/share/doc/nodejs/deps_npm_node_modules_chownr_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ci-info_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_cidr-regex_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_cli-boxes_license
+/usr/share/doc/nodejs/deps_npm_node_modules_cli-columns_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_cli-table3_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_cliui_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_cliui_node_modules_ansi-regex_license
+/usr/share/doc/nodejs/deps_npm_node_modules_cliui_node_modules_strip-ansi_license
+/usr/share/doc/nodejs/deps_npm_node_modules_clone_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_cmd-shim_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_co_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_code-point-at_license
+/usr/share/doc/nodejs/deps_npm_node_modules_color-convert_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_color-name_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_colors_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_columnify_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_concat-map_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_concat-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_configstore_license
+/usr/share/doc/nodejs/deps_npm_node_modules_console-control-strings_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_copy-concurrently_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_copy-concurrently_node_modules_iferr_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_core-util-is_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_create-error-class_license
+/usr/share/doc/nodejs/deps_npm_node_modules_cross-spawn_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_crypto-random-string_license
+/usr/share/doc/nodejs/deps_npm_node_modules_dashdash_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_debug_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_debug_node_modules_ms_license.md
+/usr/share/doc/nodejs/deps_npm_node_modules_debuglog_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_decamelize_license
+/usr/share/doc/nodejs/deps_npm_node_modules_decode-uri-component_license
+/usr/share/doc/nodejs/deps_npm_node_modules_deep-extend_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_defaults_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_detect-indent_license
+/usr/share/doc/nodejs/deps_npm_node_modules_detect-newline_license
+/usr/share/doc/nodejs/deps_npm_node_modules_dezalgo_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_dot-prop_license
+/usr/share/doc/nodejs/deps_npm_node_modules_dotenv_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_duplexer3_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_duplexify_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_editor_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_encoding_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_end-of-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_es6-promise_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_escape-string-regexp_license
+/usr/share/doc/nodejs/deps_npm_node_modules_execa_license
+/usr/share/doc/nodejs/deps_npm_node_modules_extend_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_extsprintf_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fast-deep-equal_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fast-json-stable-stringify_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_figgy-pudding_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_find-npm-prefix_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_find-up_license
+/usr/share/doc/nodejs/deps_npm_node_modules_flush-write-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_forever-agent_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_from2_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_fs-minipass_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fs-vacuum_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fs-write-stream-atomic_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fs-write-stream-atomic_node_modules_iferr_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fs.realpath_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_fstream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_gauge_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_gauge_node_modules_string-width_license
+/usr/share/doc/nodejs/deps_npm_node_modules_gentle-fs_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_gentle-fs_node_modules_iferr_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_get-stream_license
+/usr/share/doc/nodejs/deps_npm_node_modules_getpass_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_glob_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_global-dirs_license
+/usr/share/doc/nodejs/deps_npm_node_modules_got_license
+/usr/share/doc/nodejs/deps_npm_node_modules_graceful-fs_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_har-schema_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_har-validator_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_has-flag_license
+/usr/share/doc/nodejs/deps_npm_node_modules_has-unicode_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_hosted-git-info_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_http-signature_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_humanize-ms_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_iconv-lite_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_iferr_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ignore-walk_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_import-lazy_license
+/usr/share/doc/nodejs/deps_npm_node_modules_inflight_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_inherits_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ini_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_init-package-json_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ip-regex_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-builtin-module_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-ci_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_is-cidr_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_is-fullwidth-code-point_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-installed-globally_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-obj_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-path-inside_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-redirect_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-retry-allowed_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-stream_license
+/usr/share/doc/nodejs/deps_npm_node_modules_is-typedarray_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_isexe_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_isstream_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_jsbn_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_json-parse-better-errors_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_json-schema-traverse_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_json-stringify-safe_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_jsonparse_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_jsprim_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_latest-version_license
+/usr/share/doc/nodejs/deps_npm_node_modules_lazy-property_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lcid_license
+/usr/share/doc/nodejs/deps_npm_node_modules_libcipm_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_libnpmhook_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_libnpmhook_node_modules_npm-registry-fetch_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_libnpx_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_locate-path_license
+/usr/share/doc/nodejs/deps_npm_node_modules_lock-verify_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lockfile_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._baseindexof_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._baseuniq_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._bindcallback_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._cacheindexof_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._createcache_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._createset_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._getnative_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash._root_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash.clonedeep_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash.restparam_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash.union_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash.uniq_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lodash.without_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_lowercase-keys_license
+/usr/share/doc/nodejs/deps_npm_node_modules_lru-cache_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_make-dir_license
+/usr/share/doc/nodejs/deps_npm_node_modules_make-fetch-happen_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_meant_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_mem_license
+/usr/share/doc/nodejs/deps_npm_node_modules_mime-db_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_mime-types_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_mimic-fn_license
+/usr/share/doc/nodejs/deps_npm_node_modules_minimatch_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_minimist_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_minipass_node_modules_yallist_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_minizlib_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_mississippi_license
+/usr/share/doc/nodejs/deps_npm_node_modules_mkdirp_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_move-concurrently_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ms_license.md
+/usr/share/doc/nodejs/deps_npm_node_modules_mute-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_node-fetch-npm_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_node-gyp_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_node-gyp_gyp_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_node-gyp_node_modules_nopt_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_node-gyp_node_modules_semver_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_node-gyp_node_modules_tar_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_nopt_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_normalize-package-data_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-audit-report_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-bundled_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-cache-filename_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-install-checks_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-lifecycle_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-logical-tree_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-package-arg_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-packlist_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-pick-manifest_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-profile_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-client_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-client_node_modules_ssri_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_cacache_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_cacache_node_modules_mississippi_license
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_figgy-pudding_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_make-fetch-happen_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_pump_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_smart-buffer_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_socks_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-registry-fetch_node_modules_ssri_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-run-path_license
+/usr/share/doc/nodejs/deps_npm_node_modules_npm-user-validate_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_npmlog_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_number-is-nan_license
+/usr/share/doc/nodejs/deps_npm_node_modules_oauth-sign_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_object-assign_license
+/usr/share/doc/nodejs/deps_npm_node_modules_once_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_os-homedir_license
+/usr/share/doc/nodejs/deps_npm_node_modules_os-locale_license
+/usr/share/doc/nodejs/deps_npm_node_modules_os-tmpdir_license
+/usr/share/doc/nodejs/deps_npm_node_modules_osenv_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_p-finally_license
+/usr/share/doc/nodejs/deps_npm_node_modules_p-limit_license
+/usr/share/doc/nodejs/deps_npm_node_modules_p-locate_license
+/usr/share/doc/nodejs/deps_npm_node_modules_p-try_license
+/usr/share/doc/nodejs/deps_npm_node_modules_package-json_license
+/usr/share/doc/nodejs/deps_npm_node_modules_pacote_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_parallel-transform_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_path-exists_license
+/usr/share/doc/nodejs/deps_npm_node_modules_path-is-absolute_license
+/usr/share/doc/nodejs/deps_npm_node_modules_path-is-inside_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_path-key_license
+/usr/share/doc/nodejs/deps_npm_node_modules_performance-now_license.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_pify_license
+/usr/share/doc/nodejs/deps_npm_node_modules_prepend-http_license
+/usr/share/doc/nodejs/deps_npm_node_modules_process-nextick-args_license.md
+/usr/share/doc/nodejs/deps_npm_node_modules_promise-inflight_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_promise-retry_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_promzard_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_proto-list_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_protoduck_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_prr_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_pseudomap_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_pump_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_pumpify_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_pumpify_node_modules_pump_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_punycode_LICENSE-MIT.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_qrcode-terminal_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_qs_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_query-string_license
+/usr/share/doc/nodejs/deps_npm_node_modules_qw_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_rc_LICENSE.APACHE2
+/usr/share/doc/nodejs/deps_npm_node_modules_rc_LICENSE.BSD
+/usr/share/doc/nodejs/deps_npm_node_modules_rc_LICENSE.MIT
+/usr/share/doc/nodejs/deps_npm_node_modules_rc_node_modules_minimist_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_read-installed_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_read-package-json_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_read-package-tree_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_read_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_readable-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_readdir-scoped-modules_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_registry-auth-token_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_registry-url_license
+/usr/share/doc/nodejs/deps_npm_node_modules_request_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_require-directory_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_require-main-filename_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_resolve-from_license
+/usr/share/doc/nodejs/deps_npm_node_modules_rimraf_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_safe-buffer_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_safer-buffer_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_semver-diff_license
+/usr/share/doc/nodejs/deps_npm_node_modules_semver_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_set-blocking_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_sha_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_shebang-command_license
+/usr/share/doc/nodejs/deps_npm_node_modules_shebang-regex_license
+/usr/share/doc/nodejs/deps_npm_node_modules_signal-exit_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_slide_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_smart-buffer_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_socks_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_sorted-object_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_sorted-union-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_sorted-union-stream_node_modules_from2_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_sorted-union-stream_node_modules_readable-stream_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_sorted-union-stream_node_modules_string_decoder_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_spdx-correct_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_spdx-expression-parse_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_sshpk_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_ssri_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_stream-each_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_stream-iterate_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_stream-shift_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_strict-uri-encode_license
+/usr/share/doc/nodejs/deps_npm_node_modules_string-width_license
+/usr/share/doc/nodejs/deps_npm_node_modules_string-width_node_modules_ansi-regex_license
+/usr/share/doc/nodejs/deps_npm_node_modules_string-width_node_modules_is-fullwidth-code-point_license
+/usr/share/doc/nodejs/deps_npm_node_modules_string-width_node_modules_strip-ansi_license
+/usr/share/doc/nodejs/deps_npm_node_modules_string_decoder_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_stringify-package_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_strip-ansi_license
+/usr/share/doc/nodejs/deps_npm_node_modules_strip-eof_license
+/usr/share/doc/nodejs/deps_npm_node_modules_strip-json-comments_license
+/usr/share/doc/nodejs/deps_npm_node_modules_supports-color_license
+/usr/share/doc/nodejs/deps_npm_node_modules_tar_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_tar_node_modules_yallist_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_term-size_license
+/usr/share/doc/nodejs/deps_npm_node_modules_text-table_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_through2_LICENSE.html
+/usr/share/doc/nodejs/deps_npm_node_modules_through2_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_through_LICENSE.APACHE2
+/usr/share/doc/nodejs/deps_npm_node_modules_through_LICENSE.MIT
+/usr/share/doc/nodejs/deps_npm_node_modules_timed-out_license
+/usr/share/doc/nodejs/deps_npm_node_modules_tiny-relative-date_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_tough-cookie_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_tunnel-agent_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_tweetnacl_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_typedarray_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_uid-number_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_umask_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_unique-string_license
+/usr/share/doc/nodejs/deps_npm_node_modules_unpipe_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_unzip-response_license
+/usr/share/doc/nodejs/deps_npm_node_modules_update-notifier_license
+/usr/share/doc/nodejs/deps_npm_node_modules_url-parse-lax_license
+/usr/share/doc/nodejs/deps_npm_node_modules_util-deprecate_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_util-extend_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_uuid_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_validate-npm-package-license_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_validate-npm-package-name_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_verror_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_wcwidth_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_which-module_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_which_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_wide-align_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_wide-align_node_modules_string-width_license
+/usr/share/doc/nodejs/deps_npm_node_modules_widest-line_license
+/usr/share/doc/nodejs/deps_npm_node_modules_worker-farm_LICENSE.md
+/usr/share/doc/nodejs/deps_npm_node_modules_wrap-ansi_license
+/usr/share/doc/nodejs/deps_npm_node_modules_wrap-ansi_node_modules_string-width_license
+/usr/share/doc/nodejs/deps_npm_node_modules_wrappy_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_write-file-atomic_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_xdg-basedir_license
+/usr/share/doc/nodejs/deps_npm_node_modules_y18n_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_yallist_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_yargs-parser_LICENSE.txt
+/usr/share/doc/nodejs/deps_npm_node_modules_yargs_LICENSE
+/usr/share/doc/nodejs/deps_npm_node_modules_yargs_node_modules_y18n_LICENSE
+/usr/share/doc/nodejs/deps_openssl_openssl_LICENSE
+/usr/share/doc/nodejs/deps_openssl_openssl_crypto_bf_COPYRIGHT
+/usr/share/doc/nodejs/deps_openssl_openssl_crypto_des_COPYRIGHT
+/usr/share/doc/nodejs/deps_uv_LICENSE
+/usr/share/doc/nodejs/deps_uv_LICENSE-docs
+/usr/share/doc/nodejs/deps_v8_LICENSE
+/usr/share/doc/nodejs/deps_v8_LICENSE.fdlibm
+/usr/share/doc/nodejs/deps_v8_LICENSE.strongtalk
+/usr/share/doc/nodejs/deps_v8_LICENSE.v8
+/usr/share/doc/nodejs/deps_v8_LICENSE.valgrind
+/usr/share/doc/nodejs/deps_v8_src_third_party_valgrind_LICENSE
+/usr/share/doc/nodejs/deps_v8_src_third_party_vtune_LICENSE
+/usr/share/doc/nodejs/deps_v8_third_party_inspector_protocol_LICENSE
+/usr/share/doc/nodejs/deps_v8_third_party_jinja2_LICENSE
+/usr/share/doc/nodejs/deps_v8_third_party_markupsafe_LICENSE
+/usr/share/doc/nodejs/tools_doc_LICENSE
+/usr/share/doc/nodejs/tools_doc_node_modules_marked_LICENSE
+/usr/share/doc/nodejs/tools_gyp_LICENSE
 
 %files man
 %defattr(-,root,root,-)
