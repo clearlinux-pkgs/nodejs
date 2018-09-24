@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 8.12.0
-Release  : 60
+Release  : 61
 URL      : https://nodejs.org/dist/v8.12.0/node-v8.12.0.tar.gz
 Source0  : https://nodejs.org/dist/v8.12.0/node-v8.12.0.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
