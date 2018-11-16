@@ -1,0 +1,1 @@
+./configure  --shared-zlib --shared-openssl
