@@ -3,6 +3,7 @@ libcrypto.so.1.1
 libdl.so.2
 libgcc_s.so.1
 libm.so.6
+libnghttp2.so.14
 libpthread.so.0
 librt.so.1
 libssl.so.1.1

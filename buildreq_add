@@ -3,3 +3,8 @@
 util-linux
 MarkupSafe-python3
 python-core
+openssl-dev
+nghttp2-dev
+python-dev
+python3-dev
+zlib-dev

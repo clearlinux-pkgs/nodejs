@@ -1,0 +1,4 @@
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export PYTHON=/usr/bin/python2
+./configure --prefix=/usr --shared-openssl --shared-zlib --use-largepages --enable-lto --shared-nghttp2
