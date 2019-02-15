@@ -4,10 +4,10 @@
 #
 Name     : nodejs
 Version  : 10.15.1
-Release  : 72
+Release  : 73
 URL      : https://nodejs.org/dist/v10.15.1/node-v10.15.1.tar.xz
 Source0  : https://nodejs.org/dist/v10.15.1/node-v10.15.1.tar.xz
-Summary  : Node.js is a platform for building fast, scalable network applications.
+Summary  : Evented I/O for V8 javascript
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 GPL-2.0 HPND ISC MIT OpenSSL Unlicense bzip2-1.0.6
 Requires: nodejs-bin = %{version}-%{release}
@@ -27,6 +27,7 @@ BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : util-linux
 BuildRequires : zlib-dev
+Patch1: unbreakhuge.patch
 
 %description
 Node.js is a platform built on Chrome's JavaScript runtime for easily
@@ -93,6 +94,7 @@ man components for the nodejs package.
 
 %prep
 %setup -q -n node-v10.15.1
+%patch1 -p1
 
 %build
 ## build_prepend content
@@ -105,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549495794
+export SOURCE_DATE_EPOCH=1550250431
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -114,7 +116,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1549495794
+export SOURCE_DATE_EPOCH=1550250431
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp deps/acorn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/deps_acorn_LICENSE
