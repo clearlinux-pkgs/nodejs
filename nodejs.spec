@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 10.15.3
-Release  : 76
+Release  : 77
 URL      : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
 Source0  : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
 Summary  : Evented I/O for V8 javascript
