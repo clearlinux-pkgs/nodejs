@@ -4,23 +4,26 @@
 #
 Name     : nodejs
 Version  : 10.15.3
-Release  : 77
+Release  : 78
 URL      : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
 Source0  : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
-Summary  : Evented I/O for V8 javascript
+Summary  : Node.js is a platform for building fast, scalable network applications.
 Group    : Development/Tools
-License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 GPL-2.0 HPND ISC MIT OpenSSL Unlicense bzip2-1.0.6
+License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 GPL-2.0 HPND ICU ISC MIT OpenSSL Unlicense Zlib bzip2-1.0.6
 Requires: nodejs-bin = %{version}-%{release}
 Requires: nodejs-data = %{version}-%{release}
 Requires: nodejs-license = %{version}-%{release}
 Requires: nodejs-man = %{version}-%{release}
 Requires: MarkupSafe-python3
+Requires: libuv
 BuildRequires : MarkupSafe-python3
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-cpan
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-qmake
+BuildRequires : libuv-dev
 BuildRequires : nghttp2-dev
+BuildRequires : nodejs-dev
 BuildRequires : openssl-dev
 BuildRequires : python-core
 BuildRequires : python-dev
@@ -61,7 +64,6 @@ Group: Development
 Requires: nodejs-bin = %{version}-%{release}
 Requires: nodejs-data = %{version}-%{release}
 Provides: nodejs-devel = %{version}-%{release}
-Requires: nodejs = %{version}-%{release}
 
 %description dev
 dev components for the nodejs package.
@@ -101,13 +103,14 @@ man components for the nodejs package.
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export PYTHON=/usr/bin/python2
-./configure --prefix=/usr --shared-openssl --shared-zlib --use-largepages --enable-lto --shared-nghttp2
+./configure --prefix=/usr --shared-openssl --shared-zlib --use-largepages \
+--enable-lto --shared-nghttp2 --shared-libuv
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552076018
+export SOURCE_DATE_EPOCH=1554535793
 export LDFLAGS="${LDFLAGS} -fno-lto"
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -116,10 +119,18 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 
+%check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+make test-only ||:
+
 %install
-export SOURCE_DATE_EPOCH=1552076018
+export SOURCE_DATE_EPOCH=1554535793
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
+cp LICENSE %{buildroot}/usr/share/package-licenses/nodejs/LICENSE
 cp deps/acorn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/deps_acorn_LICENSE
 cp deps/cares/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/deps_cares_LICENSE.md
 cp deps/gtest/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/deps_gtest_LICENSE
@@ -3842,22 +3853,6 @@ cp tools/node-lint-md-cli-rollup/LICENSE %{buildroot}/usr/share/package-licenses
 /usr/include/node/node_buffer.h
 /usr/include/node/node_object_wrap.h
 /usr/include/node/node_version.h
-/usr/include/node/uv.h
-/usr/include/node/uv/aix.h
-/usr/include/node/uv/android-ifaddrs.h
-/usr/include/node/uv/bsd.h
-/usr/include/node/uv/darwin.h
-/usr/include/node/uv/errno.h
-/usr/include/node/uv/linux.h
-/usr/include/node/uv/os390.h
-/usr/include/node/uv/posix.h
-/usr/include/node/uv/stdint-msvc2008.h
-/usr/include/node/uv/sunos.h
-/usr/include/node/uv/threadpool.h
-/usr/include/node/uv/tree.h
-/usr/include/node/uv/unix.h
-/usr/include/node/uv/version.h
-/usr/include/node/uv/win.h
 /usr/include/node/v8-inspector-protocol.h
 /usr/include/node/v8-inspector.h
 /usr/include/node/v8-platform.h
@@ -3878,6 +3873,7 @@ cp tools/node-lint-md-cli-rollup/LICENSE %{buildroot}/usr/share/package-licenses
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/nodejs/LICENSE
 /usr/share/package-licenses/nodejs/deps_acorn_LICENSE
 /usr/share/package-licenses/nodejs/deps_cares_LICENSE.md
 /usr/share/package-licenses/nodejs/deps_gtest_LICENSE

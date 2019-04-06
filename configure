@@ -1,1 +1,0 @@
---shared-openssl --shared-zlib PYTHON=/usr/bin/python2 --enable-lto
