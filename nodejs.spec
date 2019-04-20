@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 10.15.3
-Release  : 78
+Release  : 79
 URL      : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
 Source0  : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
