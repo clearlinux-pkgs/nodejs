@@ -4,10 +4,10 @@
 #
 Name     : nodejs
 Version  : 10.15.3
-Release  : 79
+Release  : 80
 URL      : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
 Source0  : https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.xz
-Summary  : Node.js is a platform for building fast, scalable network applications.
+Summary  : Evented I/O for V8 javascript
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-2-Clause-NetBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 GPL-2.0 HPND ICU ISC MIT OpenSSL Unlicense Zlib bzip2-1.0.6
 Requires: nodejs-bin = %{version}-%{release}
@@ -64,6 +64,7 @@ Group: Development
 Requires: nodejs-bin = %{version}-%{release}
 Requires: nodejs-data = %{version}-%{release}
 Provides: nodejs-devel = %{version}-%{release}
+Requires: nodejs = %{version}-%{release}
 
 %description dev
 dev components for the nodejs package.
@@ -110,12 +111,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554535793
-export LDFLAGS="${LDFLAGS} -fno-lto"
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export SOURCE_DATE_EPOCH=1557051914
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 make  %{?_smp_mflags}
 
 
@@ -127,7 +130,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test-only ||:
 
 %install
-export SOURCE_DATE_EPOCH=1554535793
+export SOURCE_DATE_EPOCH=1557051914
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp LICENSE %{buildroot}/usr/share/package-licenses/nodejs/LICENSE
