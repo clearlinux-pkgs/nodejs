@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 12.13.0
-Release  : 85
+Release  : 86
 URL      : https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.gz
 Source0  : https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
