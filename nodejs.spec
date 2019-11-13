@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 12.13.0
-Release  : 87
+Release  : 88
 URL      : https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.gz
 Source0  : https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.gz
 Summary  : Evented I/O for V8 javascript
@@ -100,7 +100,6 @@ man components for the nodejs package.
 %prep
 %setup -q -n node-v12.13.0
 cd %{_builddir}/node-v12.13.0
-%patch1 -p1
 
 %build
 ## build_prepend content
@@ -114,8 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574400666
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1573686110
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -135,7 +133,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test-only ||:
 
 %install
-export SOURCE_DATE_EPOCH=1574400666
+export SOURCE_DATE_EPOCH=1573686110
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v12.13.0/deps/acorn-plugins/acorn-class-fields/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/687b15780ee9faeeb5d617e87022f908edf8f905
