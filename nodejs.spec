@@ -4,10 +4,10 @@
 #
 Name     : nodejs
 Version  : 12.13.0
-Release  : 86
+Release  : 87
 URL      : https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.gz
 Source0  : https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.gz
-Summary  : Node.js is a platform for building fast, scalable network applications.
+Summary  : Evented I/O for V8 javascript
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 CC0-1.0 GPL-2.0 HPND ISC MIT OpenSSL Python-2.0 Unlicense bzip2-1.0.6
 Requires: nodejs-bin = %{version}-%{release}
@@ -31,6 +31,7 @@ BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : util-linux
 BuildRequires : zlib-dev
+Patch1: quiet.patch
 
 %description
 Node.js is a platform built on Chrome's JavaScript runtime for easily
@@ -65,6 +66,7 @@ Requires: nodejs-bin = %{version}-%{release}
 Requires: nodejs-data = %{version}-%{release}
 Provides: nodejs-devel = %{version}-%{release}
 Requires: nodejs = %{version}-%{release}
+Requires: nodejs = %{version}-%{release}
 
 %description dev
 dev components for the nodejs package.
@@ -97,6 +99,8 @@ man components for the nodejs package.
 
 %prep
 %setup -q -n node-v12.13.0
+cd %{_builddir}/node-v12.13.0
+%patch1 -p1
 
 %build
 ## build_prepend content
@@ -110,7 +114,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571885075
+export SOURCE_DATE_EPOCH=1574400666
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -130,7 +135,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test-only ||:
 
 %install
-export SOURCE_DATE_EPOCH=1571885075
+export SOURCE_DATE_EPOCH=1574400666
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v12.13.0/deps/acorn-plugins/acorn-class-fields/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/687b15780ee9faeeb5d617e87022f908edf8f905
@@ -280,6 +285,7 @@ cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/gentle-fs/node_modules/aprob
 cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/gentle-fs/node_modules/iferr/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/19bb2fef71bfab21bea37bbb5ddb3302f4864912
 cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/get-stream/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c
 cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/getpass/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/10b8ac49ffb8f7cc8bdca9303209a1b3b2f3587d
+cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/glob/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/35325ce350b66f071997ac573a97eca7e2e4f558
 cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/global-dirs/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c
 cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/got/license %{buildroot}/usr/share/package-licenses/nodejs/0c94f137f6e0536db8cb2622a9dc84253b91b90c
 cp %{_builddir}/node-v12.13.0/deps/npm/node_modules/got/node_modules/get-stream/license %{buildroot}/usr/share/package-licenses/nodejs/0c94f137f6e0536db8cb2622a9dc84253b91b90c
@@ -4426,6 +4432,7 @@ rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICEN
 /usr/share/package-licenses/nodejs/30e9c6d4038e3c4d9d1b4a63db883074349f27d6
 /usr/share/package-licenses/nodejs/34b2b37ec594d86bd391137b4fb644eccb17bdbb
 /usr/share/package-licenses/nodejs/34d4249a8ef23970810fd3018b9399b1268dc052
+/usr/share/package-licenses/nodejs/35325ce350b66f071997ac573a97eca7e2e4f558
 /usr/share/package-licenses/nodejs/35b9154bfb51e35216877dbc9215a2d0ffde4571
 /usr/share/package-licenses/nodejs/35d8442a9599f876c805b2c7d31178ecfa18c829
 /usr/share/package-licenses/nodejs/366076fbc660271a1c6d424852e04957e3881bb2
