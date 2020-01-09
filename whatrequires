@@ -1,7 +1,5 @@
 # This file contains recursive sources that require this package
-atom
 swig
 texinfo
 thrift
 upm
-yarn
