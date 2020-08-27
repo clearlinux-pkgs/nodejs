@@ -1,1 +1,1 @@
-make test-only ||:
+make %{?_smp_mflags} test-only || :

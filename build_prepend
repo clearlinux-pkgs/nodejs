@@ -1,5 +1,21 @@
+# Ensure the build really is quiet... the generated makefile checks whether "V"
+# is defined, not whether its value is "0" or "1".
+sed -i 's/V=\$(V)//' Makefile
+# Prevent "make install" from rebuilding the node binary; the install step is a
+# later stage in the spec.
+sed -i 's/^install: all.*/install:/' Makefile
+# Avoiding rebuilding the node binary for test execution
+sed -i '/^\.PHONY: \$(NODE/d' Makefile
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export PYTHON=/usr/bin/python2
-./configure --prefix=/usr --shared-openssl --shared-zlib --use-largepages \
---enable-lto --shared-nghttp2 --shared-libuv
+./configure \
+  --prefix=/usr \
+  --shared-openssl \
+  --shared-zlib \
+  --use-largepages \
+  --enable-lto \
+  --shared-nghttp2 \
+  --shared-libuv \
+  --verbose \
+  --with-intl=system-icu

@@ -1,22 +1,12 @@
---- node-v12.13.0/src/large_pages/node_large_page.cc~	2019-10-21 07:32:21.000000000 +0000
-+++ node-v12.13.0/src/large_pages/node_large_page.cc	2019-11-21 14:00:03.561801810 +0000
-@@ -413,7 +413,7 @@
- int MapStaticCodeToLargePages() {
-   struct text_region r = FindNodeTextRegion();
-   if (r.found_text_region == false) {
--    fprintf(stderr, "Hugepages WARNING: failed to find text region\n");
-+//    fprintf(stderr, "Hugepages WARNING: failed to find text region\n");
-     return -1;
-   }
- 
---- node-v12.13.0/src/node.cc~	2019-10-21 07:32:21.000000000 +0000
-+++ node-v12.13.0/src/node.cc	2019-11-21 14:00:33.702801390 +0000
-@@ -922,7 +922,7 @@
- #ifdef NODE_ENABLE_LARGE_CODE_PAGES
-   if (node::IsLargePagesEnabled()) {
-     if (node::MapStaticCodeToLargePages() != 0) {
--      fprintf(stderr, "Reverting to default page size\n");
-+//      fprintf(stderr, "Reverting to default page size\n");
+diff -ru node-v12.18.3~/src/node.cc node-v12.18.3/src/node.cc
+--- node-v12.18.3~/src/node.cc	2020-07-22 15:26:54.000000000 +0000
++++ node-v12.18.3/src/node.cc	2020-07-30 00:19:21.327740286 +0000
+@@ -902,7 +902,7 @@
+       per_process::cli_options->use_largepages == "silent") {
+     int result = node::MapStaticCodeToLargePages();
+     if (per_process::cli_options->use_largepages == "on" && result != 0) {
+-      fprintf(stderr, "%s\n", node::LargePagesError(result));
++      // fprintf(stderr, "%s\n", node::LargePagesError(result));
      }
    }
- #endif
+ 
