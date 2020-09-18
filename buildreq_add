@@ -1,12 +1,12 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-util-linux
-libuv-dev
 MarkupSafe-python3
-python-core
-openssl-dev
+libuv-dev
 nghttp2-dev
 nodejs-dev
+openssl-dev
+python-core
 python-dev
 python3-dev
+util-linux
 zlib-dev
