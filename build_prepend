@@ -6,6 +6,8 @@ sed -i 's/V=\$(V)//' Makefile
 sed -i 's/^install: all.*/install:/' Makefile
 # Avoiding rebuilding the node binary for test execution
 sed -i '/^\.PHONY: \$(NODE/d' Makefile
+# Use /var/tmp instead of /tmp to aid building on systems with less RAM
+export TMPDIR=/var/tmp
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export PYTHON=/usr/bin/python2

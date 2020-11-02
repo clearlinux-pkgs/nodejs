@@ -1,5 +1,5 @@
 PKG_NAME := nodejs
-URL = https://nodejs.org/dist/v12.18.4/node-v12.18.4.tar.xz
+URL = https://nodejs.org/dist/v14.15.0/node-v14.15.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
