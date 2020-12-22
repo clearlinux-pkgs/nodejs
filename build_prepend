@@ -1,6 +1,9 @@
 # Ensure the build really is quiet... the generated makefile checks whether "V"
 # is defined, not whether its value is "0" or "1".
 sed -i 's/V=\$(V)//' Makefile
+# Also silence a few categories of warnings from the vendored v8 codebase. Helps
+# shrink the build log size from ~104MiB to ~800KiB.
+export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment"
 # Prevent "make install" from rebuilding the node binary; the install step is a
 # later stage in the spec.
 sed -i 's/^install: all.*/install:/' Makefile
