@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 14.17.0
-Release  : 103
+Release  : 104
 URL      : https://nodejs.org/dist/v14.17.0/node-v14.17.0.tar.xz
 Source0  : https://nodejs.org/dist/v14.17.0/node-v14.17.0.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
