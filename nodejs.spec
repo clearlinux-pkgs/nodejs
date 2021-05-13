@@ -148,8 +148,8 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-## FIXME: this command times out... what tests can we run offline?
-# make %{?_smp_mflags} test-only || :
+./out/Release/cctest --help
+./out/Release/node --help
 
 %install
 export SOURCE_DATE_EPOCH=1620853173
