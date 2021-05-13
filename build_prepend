@@ -19,7 +19,6 @@ export PYTHON=/usr/bin/python2
   --shared-openssl \
   --shared-zlib \
   --use-largepages \
-  --enable-lto \
   --shared-nghttp2 \
   --shared-libuv \
   --verbose \
