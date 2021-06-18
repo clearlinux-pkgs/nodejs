@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 14.17.1
-Release  : 105
+Release  : 107
 URL      : https://nodejs.org/dist/v14.17.1/node-v14.17.1.tar.xz
 Source0  : https://nodejs.org/dist/v14.17.1/node-v14.17.1.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -24,7 +24,6 @@ BuildRequires : buildreq-qmake
 BuildRequires : libuv
 BuildRequires : libuv-dev
 BuildRequires : nghttp2-dev
-BuildRequires : nodejs-dev
 BuildRequires : openssl-dev
 BuildRequires : pkgconfig(icu-i18n)
 BuildRequires : python-core
@@ -134,12 +133,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623783569
+export SOURCE_DATE_EPOCH=1624041880
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
@@ -150,9 +149,12 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 ./out/Release/cctest --help
 ./out/Release/node --help
+bin_path=%{buildroot}/usr/bin
+mod_path=%{buildroot}/usr/lib/node_modules
+PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1623783569
+export SOURCE_DATE_EPOCH=1624041880
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v14.17.1/deps/acorn-plugins/acorn-class-fields/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/687b15780ee9faeeb5d617e87022f908edf8f905
