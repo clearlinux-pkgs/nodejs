@@ -3,7 +3,6 @@
 MarkupSafe-python3
 libuv-dev
 nghttp2-dev
-nodejs-dev
 openssl-dev
 python-core
 python-dev
