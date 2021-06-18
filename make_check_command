@@ -1,2 +1,5 @@
 ./out/Release/cctest --help
 ./out/Release/node --help
+bin_path=%{buildroot}/usr/bin
+mod_path=%{buildroot}/usr/lib/node_modules
+PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
