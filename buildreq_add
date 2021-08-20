@@ -4,8 +4,7 @@ MarkupSafe-python3
 libuv-dev
 nghttp2-dev
 openssl-dev
-python-core
-python-dev
+python3-core
 python3-dev
 util-linux
 zlib-dev
