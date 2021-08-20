@@ -26,8 +26,7 @@ BuildRequires : libuv-dev
 BuildRequires : nghttp2-dev
 BuildRequires : openssl-dev
 BuildRequires : pkgconfig(icu-i18n)
-BuildRequires : python-core
-BuildRequires : python-dev
+BuildRequires : python3-core
 BuildRequires : python3-dev
 BuildRequires : util-linux
 BuildRequires : zlib-dev
@@ -133,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1628704441
+export SOURCE_DATE_EPOCH=1629434543
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -154,7 +153,7 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1628704441
+export SOURCE_DATE_EPOCH=1629434543
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v14.17.5/deps/acorn-plugins/acorn-class-fields/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/687b15780ee9faeeb5d617e87022f908edf8f905
