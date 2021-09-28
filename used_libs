@@ -8,4 +8,5 @@ libm.so.6
 libnghttp2.so.14
 libssl.so.1.1
 libstdc++.so.6
+libuv.so.1
 libz.so.1
