@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 14.18.0
-Release  : 113
+Release  : 114
 URL      : https://nodejs.org/dist/v14.18.0/node-v14.18.0.tar.xz
 Source0  : https://nodejs.org/dist/v14.18.0/node-v14.18.0.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -132,12 +132,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632847103
+export SOURCE_DATE_EPOCH=1633129210
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -march=x86-64-v3 "
-export FCFLAGS="$FFLAGS -fno-lto -march=x86-64-v3 "
-export FFLAGS="$FFLAGS -fno-lto -march=x86-64-v3 "
-export CXXFLAGS="$CXXFLAGS -fno-lto -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
@@ -153,10 +153,12 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1632847103
+export SOURCE_DATE_EPOCH=1633129210
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v14.18.0/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/7bb15b8057ce89470af4b2d7e50d8ec8701db7a4
+cp %{_builddir}/node-v14.18.0/deps/acorn/acorn-walk/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e
+cp %{_builddir}/node-v14.18.0/deps/acorn/acorn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e
 cp %{_builddir}/node-v14.18.0/deps/brotli/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/c045813a6c514f2d30d60a07c6aaf3603850e608
 cp %{_builddir}/node-v14.18.0/deps/cares/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/e9c597f9b6cf935773ee731d4170b0c2ba142dbb
 cp %{_builddir}/node-v14.18.0/deps/cjs-module-lexer/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/3837d7a80a40165143a9888b46b6d020df39665b
@@ -4619,6 +4621,7 @@ rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICEN
 /usr/share/package-licenses/nodejs/3e7d524594d6d603a4b7e7d1abe8a7398e6b3837
 /usr/share/package-licenses/nodejs/3fc5bd6825a9d8fd53c0cd8de0bd16d1c1a7f37a
 /usr/share/package-licenses/nodejs/3ff8cf88cab3a26fc89c43bc829bbbb6161389d7
+/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e
 /usr/share/package-licenses/nodejs/427497f949741f3f7e72ea1e62749908e9c4f5b9
 /usr/share/package-licenses/nodejs/42dfd5f35168d1c67ae834a24f104e9b8cbc7836
 /usr/share/package-licenses/nodejs/433c2b9c71bad0957f4831068c2f5d973cef98a9
