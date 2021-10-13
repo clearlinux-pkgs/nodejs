@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 14.18.1
-Release  : 115
+Release  : 116
 URL      : https://nodejs.org/dist/v14.18.1/node-v14.18.1.tar.xz
 Source0  : https://nodejs.org/dist/v14.18.1/node-v14.18.1.tar.xz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : Apache-2.0 Artistic-2.0 BSD-2-Clause BSD-2-Clause-FreeBSD BSD-3-Clause BSD-4-Clause CC-BY-4.0 CC0-1.0 GPL-2.0 HPND ISC MIT OpenSSL Python-2.0 Unlicense WTFPL Zlib bzip2-1.0.6
 Requires: nodejs-bin = %{version}-%{release}
 Requires: nodejs-data = %{version}-%{release}
+Requires: nodejs-filemap = %{version}-%{release}
 Requires: nodejs-license = %{version}-%{release}
 Requires: nodejs-man = %{version}-%{release}
 Requires: MarkupSafe-python3
@@ -45,6 +46,7 @@ Summary: bin components for the nodejs package.
 Group: Binaries
 Requires: nodejs-data = %{version}-%{release}
 Requires: nodejs-license = %{version}-%{release}
+Requires: nodejs-filemap = %{version}-%{release}
 
 %description bin
 bin components for the nodejs package.
@@ -79,6 +81,14 @@ Requires: nodejs-man = %{version}-%{release}
 doc components for the nodejs package.
 
 
+%package filemap
+Summary: filemap components for the nodejs package.
+Group: Default
+
+%description filemap
+filemap components for the nodejs package.
+
+
 %package license
 Summary: license components for the nodejs package.
 Group: Default
@@ -99,6 +109,9 @@ man components for the nodejs package.
 %setup -q -n node-v14.18.1
 cd %{_builddir}/node-v14.18.1
 %patch1 -p1
+pushd ..
+cp -a node-v14.18.1 buildavx2
+popd
 
 %build
 ## build_prepend content
@@ -132,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634075846
+export SOURCE_DATE_EPOCH=1634089745
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -140,6 +153,41 @@ export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
+pushd ../buildavx2
+## build_prepend content
+# Ensure the build really is quiet... the generated makefile checks whether "V"
+# is defined, not whether its value is "0" or "1".
+sed -i 's/V=\$(V)//' Makefile
+# Also silence a few categories of warnings from the vendored v8 codebase. Helps
+# shrink the build log size from ~104MiB to ~800KiB.
+export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment"
+# Prevent "make install" from rebuilding the node binary; the install step is a
+# later stage in the spec.
+sed -i 's/^install: all.*/install:/' Makefile
+# Avoiding rebuilding the node binary for test execution
+sed -i '/^\.PHONY: \$(NODE/d' Makefile
+# Use /var/tmp instead of /tmp to aid building on systems with less RAM
+export TMPDIR=/var/tmp
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export PYTHON=/usr/bin/python2
+./configure \
+--prefix=/usr \
+--shared-openssl \
+--shared-zlib \
+--use-largepages \
+--shared-nghttp2 \
+--shared-libuv \
+--verbose \
+--with-intl=system-icu
+## build_prepend end
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+make  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C.UTF-8
@@ -153,7 +201,7 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1634075846
+export SOURCE_DATE_EPOCH=1634089745
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v14.18.1/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/7bb15b8057ce89470af4b2d7e50d8ec8701db7a4
@@ -617,14 +665,18 @@ cp %{_builddir}/node-v14.18.1/tools/inspector_protocol/LICENSE %{buildroot}/usr/
 cp %{_builddir}/node-v14.18.1/tools/inspector_protocol/jinja2/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/1c067319f47a331224f855e8c0b9a7735f9885c6
 cp %{_builddir}/node-v14.18.1/tools/inspector_protocol/markupsafe/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/658c659fd1b0b483ad3f65d3b7b8a3c8c2f02bc7
 cp %{_builddir}/node-v14.18.1/tools/node-lint-md-cli-rollup/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/82811981be6a8c5535cf46288c1f460a031a5b26
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
 ## Remove excluded files
-rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_LICENSE
-rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_boom_LICENSE
-rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_LICENSE
-rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_node_modules_boom_LICENSE
-rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_sntp_LICENSE
-rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
+rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_LICENSE
+rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_boom_LICENSE
+rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_LICENSE
+rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_node_modules_boom_LICENSE
+rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_sntp_LICENSE
+rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -4494,6 +4546,7 @@ rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICEN
 /usr/bin/node
 /usr/bin/npm
 /usr/bin/npx
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -4555,6 +4608,10 @@ rm -f %{buildroot}/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICEN
 %defattr(0644,root,root,0755)
 /usr/share/doc/node/gdbinit
 /usr/share/doc/node/lldb_commands.py
+
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-nodejs
 
 %files license
 %defattr(0644,root,root,0755)
