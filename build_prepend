@@ -18,7 +18,6 @@ export PYTHON=/usr/bin/python2
   --prefix=/usr \
   --shared-openssl \
   --shared-zlib \
-  --use-largepages \
   --shared-nghttp2 \
   --shared-libuv \
   --verbose \
