@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 16.14.2
-Release  : 123
+Release  : 124
 URL      : https://nodejs.org/dist/v16.14.2/node-v16.14.2.tar.gz
 Source0  : https://nodejs.org/dist/v16.14.2/node-v16.14.2.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
