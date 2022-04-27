@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 16.15.0
-Release  : 125
+Release  : 126
 URL      : https://nodejs.org/dist/v16.15.0/node-v16.15.0.tar.gz
 Source0  : https://nodejs.org/dist/v16.15.0/node-v16.15.0.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -119,7 +119,7 @@ popd
 sed -i 's/V=\$(V)//' Makefile
 # Also silence a few categories of warnings from the vendored v8 codebase. Helps
 # shrink the build log size from ~104MiB to ~800KiB.
-export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment"
+export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment -Wno-int-in-bool-context"
 # Prevent "make install" from rebuilding the node binary; the install step is a
 # later stage in the spec.
 sed -i 's/^install: all.*/install:/' Makefile
@@ -129,7 +129,7 @@ sed -i '/^\.PHONY: \$(NODE/d' Makefile
 export TMPDIR=/var/tmp
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export PYTHON=/usr/bin/python2
+export PYTHON=/usr/bin/python3
 ./configure \
 --prefix=/usr \
 --shared-openssl \
@@ -143,7 +143,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1651081712
+export SOURCE_DATE_EPOCH=1651089246
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -158,7 +158,7 @@ pushd ../buildavx2
 sed -i 's/V=\$(V)//' Makefile
 # Also silence a few categories of warnings from the vendored v8 codebase. Helps
 # shrink the build log size from ~104MiB to ~800KiB.
-export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment"
+export CXXFLAGS="$CXXFLAGS -Wno-class-memaccess -Wno-comment -Wno-int-in-bool-context"
 # Prevent "make install" from rebuilding the node binary; the install step is a
 # later stage in the spec.
 sed -i 's/^install: all.*/install:/' Makefile
@@ -168,7 +168,7 @@ sed -i '/^\.PHONY: \$(NODE/d' Makefile
 export TMPDIR=/var/tmp
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export PYTHON=/usr/bin/python2
+export PYTHON=/usr/bin/python3
 ./configure \
 --prefix=/usr \
 --shared-openssl \
@@ -198,7 +198,7 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1651081712
+export SOURCE_DATE_EPOCH=1651089246
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v16.15.0/deps/acorn/acorn-walk/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e
