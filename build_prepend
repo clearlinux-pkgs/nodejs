@@ -13,7 +13,7 @@ sed -i '/^\.PHONY: \$(NODE/d' Makefile
 export TMPDIR=/var/tmp
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export PYTHON=/usr/bin/python2
+export PYTHON=/usr/bin/python3
 ./configure \
   --prefix=/usr \
   --shared-openssl \
