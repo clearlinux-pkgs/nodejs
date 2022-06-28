@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 16.15.1
-Release  : 127
+Release  : 128
 URL      : https://nodejs.org/dist/v16.15.1/node-v16.15.1.tar.gz
 Source0  : https://nodejs.org/dist/v16.15.1/node-v16.15.1.tar.gz
 Summary  : Node.js is a platform for building fast, scalable network applications.
@@ -143,7 +143,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654188828
+export SOURCE_DATE_EPOCH=1656436095
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -198,7 +198,7 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1654188828
+export SOURCE_DATE_EPOCH=1656436095
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v16.15.1/deps/acorn/acorn-walk/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e
@@ -451,7 +451,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modu
 rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_cryptiles_node_modules_boom_LICENSE
 rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_request_node_modules_hawk_node_modules_sntp_LICENSE
 rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICENSE-jsbn
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
