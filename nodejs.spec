@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 16.17.0
-Release  : 133
+Release  : 134
 URL      : https://nodejs.org/dist/v16.17.0/node-v16.17.0.tar.gz
 Source0  : https://nodejs.org/dist/v16.17.0/node-v16.17.0.tar.gz
 Summary  : unknown
