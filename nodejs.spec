@@ -4,7 +4,7 @@
 #
 Name     : nodejs
 Version  : 16.19.0
-Release  : 138
+Release  : 139
 URL      : https://nodejs.org/dist/v16.19.0/node-v16.19.0.tar.xz
 Source0  : https://nodejs.org/dist/v16.19.0/node-v16.19.0.tar.xz
 Summary  : unknown
