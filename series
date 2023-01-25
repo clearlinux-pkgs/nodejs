@@ -1,2 +1,1 @@
-#quiet.patch
-#build.patch
+0001-Don-t-report-large-page-errors.patch

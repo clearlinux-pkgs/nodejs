@@ -1,0 +1,32 @@
+From d041b1117e9b52738083a7c1d07489997d00f443 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 25 Jan 2023 13:07:03 -0800
+Subject: [PATCH] Don't report large page errors
+
+This error isn't deemed to be valid for our usage and it just clogs up
+the error reports without actually being a critical error.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ src/node.cc | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/src/node.cc b/src/node.cc
+index 235f2eab..6a1b88e4 100644
+--- a/src/node.cc
++++ b/src/node.cc
+@@ -899,10 +899,7 @@ std::unique_ptr<InitializationResult> InitializeOncePerProcess(
+   if (!(flags & ProcessInitializationFlags::kNoUseLargePages) &&
+       (per_process::cli_options->use_largepages == "on" ||
+        per_process::cli_options->use_largepages == "silent")) {
+-    int lp_result = node::MapStaticCodeToLargePages();
+-    if (per_process::cli_options->use_largepages == "on" && lp_result != 0) {
+-      result->errors_.emplace_back(node::LargePagesError(lp_result));
+-    }
++    node::MapStaticCodeToLargePages();
+   }
+ 
+   if (!(flags & ProcessInitializationFlags::kNoPrintHelpOrVersionOutput)) {
+-- 
+2.38.1
+
