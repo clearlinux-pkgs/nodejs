@@ -5,7 +5,7 @@
 #
 Name     : nodejs
 Version  : 18.13.0
-Release  : 142
+Release  : 143
 URL      : https://nodejs.org/dist/v18.13.0/node-v18.13.0.tar.xz
 Source0  : https://nodejs.org/dist/v18.13.0/node-v18.13.0.tar.xz
 Summary  : 'Expand template text with embedded Perl'
