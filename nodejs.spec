@@ -5,7 +5,7 @@
 #
 Name     : nodejs
 Version  : 18.13.0
-Release  : 144
+Release  : 145
 URL      : https://nodejs.org/dist/v18.13.0/node-v18.13.0.tar.xz
 Source0  : https://nodejs.org/dist/v18.13.0/node-v18.13.0.tar.xz
 Summary  : 'Expand template text with embedded Perl'
@@ -129,7 +129,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683063245
+export SOURCE_DATE_EPOCH=1685589389
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -184,7 +184,7 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1683063245
+export SOURCE_DATE_EPOCH=1685589389
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v%{version}/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/8b3ca1271f70233bad0dfb189e91687269cd105a || :
