@@ -4,10 +4,10 @@
 # Using build pattern: make
 #
 Name     : nodejs
-Version  : 18.16.0
-Release  : 146
-URL      : https://nodejs.org/dist/v18.16.0/node-v18.16.0.tar.xz
-Source0  : https://nodejs.org/dist/v18.16.0/node-v18.16.0.tar.xz
+Version  : 18.17.0
+Release  : 147
+URL      : https://nodejs.org/dist/v18.17.0/node-v18.17.0.tar.xz
+Source0  : https://nodejs.org/dist/v18.17.0/node-v18.17.0.tar.xz
 Summary  : 'Expand template text with embedded Perl'
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-1.0 Artistic-1.0-Perl Artistic-2.0 BSD-2-Clause BSD-3-Clause CC-BY-4.0 CC0-1.0 GPL-1.0 GPL-2.0 HPND ISC MIT Python-2.0 Zlib bzip2-1.0.6
@@ -91,11 +91,11 @@ man components for the nodejs package.
 
 
 %prep
-%setup -q -n node-v18.16.0
-cd %{_builddir}/node-v18.16.0
+%setup -q -n node-v18.17.0
+cd %{_builddir}/node-v18.17.0
 %patch -P 1 -p1
 pushd ..
-cp -a node-v18.16.0 buildavx2
+cp -a node-v18.17.0 buildavx2
 popd
 
 %build
@@ -129,7 +129,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686781839
+export SOURCE_DATE_EPOCH=1690219616
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -184,25 +184,32 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1686781839
+export SOURCE_DATE_EPOCH=1690219616
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
 cp %{_builddir}/node-v%{version}/deps/acorn/acorn-walk/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e || :
 cp %{_builddir}/node-v%{version}/deps/acorn/acorn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2aac288168c4f2de24ae5d115b7d699a3c2969a8 || :
+cp %{_builddir}/node-v%{version}/deps/ada/LICENSE-MIT %{buildroot}/usr/share/package-licenses/nodejs/278c7bcbb6df0e2ad2b159a98e13d811cf1cafc4 || :
 cp %{_builddir}/node-v%{version}/deps/brotli/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/c045813a6c514f2d30d60a07c6aaf3603850e608 || :
 cp %{_builddir}/node-v%{version}/deps/cares/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/e9c597f9b6cf935773ee731d4170b0c2ba142dbb || :
 cp %{_builddir}/node-v%{version}/deps/cjs-module-lexer/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/3837d7a80a40165143a9888b46b6d020df39665b || :
 cp %{_builddir}/node-v%{version}/deps/corepack/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/cb1d8776e796d626d89171bec24b27311c9f931d || :
 cp %{_builddir}/node-v%{version}/deps/googletest/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/5a2314153eadadc69258a9429104cd11804ea304 || :
 cp %{_builddir}/node-v%{version}/deps/histogram/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/1f3f949bd5fdef93522f7eaad5a31dd1cca02ca1 || :
-cp %{_builddir}/node-v%{version}/deps/icu-small/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/255667e4213ddb7198295c9775079c093a046f42 || :
 cp %{_builddir}/node-v%{version}/deps/llhttp/LICENSE-MIT %{buildroot}/usr/share/package-licenses/nodejs/f7eb77642fea2d18bc5b53d361802ca0fb698b3e || :
+cp %{_builddir}/node-v%{version}/deps/minimatch/src/node_modules/balanced-match/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/09013c002fbdd686da2ec13c5a6d014f0a294ba9 || :
+cp %{_builddir}/node-v%{version}/deps/minimatch/src/node_modules/brace-expansion/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/433c2b9c71bad0957f4831068c2f5d973cef98a9 || :
 cp %{_builddir}/node-v%{version}/deps/nghttp2/COPYING %{buildroot}/usr/share/package-licenses/nodejs/7f6f3c0c08925232459e499d66231cb5da01d811 || :
 cp %{_builddir}/node-v%{version}/deps/ngtcp2/LICENSE_nghttp3 %{buildroot}/usr/share/package-licenses/nodejs/4d9bde9ffbec8d7737496c973a08b1799dfb9a63 || :
 cp %{_builddir}/node-v%{version}/deps/ngtcp2/LICENSE_ngtcp2 %{buildroot}/usr/share/package-licenses/nodejs/17c0d7c8e318823fdf0c64dfc95371c9337283de || :
 cp %{_builddir}/node-v%{version}/deps/npm/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/afef273d1530a1b3f93526a3bbfa26dcec069688 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@colors/colors/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0c75bf219569bcb432376a47aa7ca56e59708fb9 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@gar/promisify/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/52a512b40e8e0352f9918c0473b50ecf31a9e673 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@isaacs/cliui/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/039fa81eb89fc5c892f5ce2d22ee6ac0a8503880 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@isaacs/cliui/node_modules/ansi-regex/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/LICENSE-MIT.txt %{buildroot}/usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@isaacs/cliui/node_modules/string-width/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@isaacs/cliui/node_modules/strip-ansi/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@isaacs/string-locale-compare/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/515ec4469197395143dd4bfe9b1bc4e0d9b6b12a || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/arborist/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/config/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/a6d614386e4974eef58b014810f00d4ed1881575 || :
@@ -219,8 +226,10 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/package-json/LICE
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/promise-spawn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/1f3474ea2534827d050295aede1e340868483d12 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/query/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/run-script/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/a6d614386e4974eef58b014810f00d4ed1881575 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@pkgjs/parseargs/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@tootallnate/once/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/e85adb91a5a9c5fe1a425aef38aa4a19eb66003c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/abbrev/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/34d4249a8ef23970810fd3018b9399b1268dc052 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/abort-controller/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bf0549e84b42ee6c467e1f70cb5e075dc6ecd3c7 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/agentkeepalive/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42fad0263e069b5043f2ac4784a779d1293c1b87 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/aggregate-error/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/ansi-regex/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
@@ -238,6 +247,7 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/builtins/License %{buildr
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/cacache/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/dfe418dc288edb0a4bb66af2ad88bd838c55e136 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/chalk/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/chownr/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/ci-info/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/3c7fa8f7ddd06ce3e5334e7c660a8a4a4fe4e27b || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/cidr-regex/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/081863fdea26bf5db6c6348c743f2f12ca27ab72 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/clean-stack/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/cli-columns/license %{buildroot}/usr/share/package-licenses/nodejs/964b87fa5ed104ff9dd13bf3ef32f552eb4e5f1b || :
@@ -251,22 +261,24 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/columnify/LICENSE %{build
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/common-ancestor-path/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/515ec4469197395143dd4bfe9b1bc4e0d9b6b12a || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/concat-map/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/b2e68ce937c1f851926f7e10280cc93221d4f53c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/console-control-strings/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ce0c4782bdbd720baf4d2484e5b71728d3a943af || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/cross-spawn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f8e301ff400e9737f74e9f21beda3285aef077cd || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/cross-spawn/node_modules/which/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/cssesc/LICENSE-MIT.txt %{buildroot}/usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/debug/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/59e43165aeefdfe28d5e497a0aaef79d6d622af0 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/debug/node_modules/ms/license.md %{buildroot}/usr/share/package-licenses/nodejs/884e84ebfddafd93b5bb814df076d2ebd1757ba8 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/defaults/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f6eb8cd4b473c79e30106a7ca26c085ddcd8f266 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/delegates/License %{buildroot}/usr/share/package-licenses/nodejs/9d414bd96ce8326fadc2f959781154de49af5b00 || :
-cp %{_builddir}/node-v%{version}/deps/npm/node_modules/depd/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/4881ad2ec8eb2470a7049421047c6d076f48f1de || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/diff/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f62e826f0d70e5202b440e337382d1c3fabb05a8 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/emoji-regex/LICENSE-MIT.txt %{buildroot}/usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/encoding/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2bb687a1c60ce016fd683abaaefc0de758753855 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/env-paths/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/event-target-shim/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0e6b923c1ce402e3cc5e8fda72e8f06fb03f730c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/events/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ccc433071bf4eb0d1f06f5f0a5dbd2baabe3d885 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/fastest-levenshtein/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/7c782c64848c459d683d0a35844929561660096e || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/fs-minipass/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/fs.realpath/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/cdf711a72ab90a1b193aea27e96cccf491e157e2 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/function-bind/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/290336f3da86f5f9a91a231b058c5588aaa9f606 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/gauge/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
-cp %{_builddir}/node-v%{version}/deps/npm/node_modules/glob/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/79166a654db8904907e23bb644d32e1f1ff4554e || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/graceful-fs/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/13e4a8932f9e1c52c3feb92c88cc523701e15d41 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/has-flag/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/has-unicode/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0478d8708f5ff5e49c150412201cb066a9b2006d || :
@@ -343,6 +355,7 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/min
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/nopt/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/npmlog/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/readable-stream/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/d3622fac093fe1cbcb4d8e8d35801600b681fc45 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/signal-exit/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/ffffda22e521943bc894935cfae5dd16aaf35897 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/ssri/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/1dd68471437a7f23e484c9a00043bc2cd4485c3c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/unique-filename/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ef2567c24676e0984660208c2bab9c2d6b713145 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/node-gyp/node_modules/unique-slug/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/9d4786bbe2816e6c0cbf474f9f63946076d745b7 || :
@@ -365,6 +378,7 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/p-map/license %{buildroot
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/pacote/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/959d146990e87b9dd1eae8815e072bd2450209c3 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/parse-conflict-json/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/path-is-absolute/license %{buildroot}/usr/share/package-licenses/nodejs/0c94f137f6e0536db8cb2622a9dc84253b91b90c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/path-key/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/postcss-selector-parser/LICENSE-MIT %{buildroot}/usr/share/package-licenses/nodejs/ee54f5816e76951d69c639c71c6a04d0d52f54e2 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/proc-log/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/c3f5c7f37d0833769d9bb64475b3e589dbca4010 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/process/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/1433c1355cae4a748820ba1862b32bb231ac04b6 || :
@@ -389,15 +403,17 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/safer-buffer/LICENSE %{bu
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/semver/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/semver/node_modules/lru-cache/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/set-blocking/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/47edc4b4e929248ad6e423bf3a6736c320a3277c || :
-cp %{_builddir}/node-v%{version}/deps/npm/node_modules/signal-exit/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/ffffda22e521943bc894935cfae5dd16aaf35897 || :
-cp %{_builddir}/node-v%{version}/deps/npm/node_modules/sigstore/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/shebang-command/license %{buildroot}/usr/share/package-licenses/nodejs/db85a00ab8daaf90050b20b30266c92a58cb71f2 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/shebang-regex/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/smart-buffer/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ecd174d7fc2c9c30751176131f7326063b36c29f || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/socks/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ddc86900b60a427d5065cd608b79ca29cd07c2fb || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/spdx-correct/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/spdx-expression-parse/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/a9293189ddfd959ffb54ef7805b1eab21979d700 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/ssri/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/1dd68471437a7f23e484c9a00043bc2cd4485c3c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/string-width-cjs/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/string-width/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/string_decoder/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/36791ee8e28518f9fb92b51ad9e4247708be9c55 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/strip-ansi-cjs/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/strip-ansi/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/supports-color/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/tar/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
@@ -415,11 +431,19 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/walk-up-path/LICENSE %{bu
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wcwidth/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/9dca22783eacd8a2d2de9854db122cf629ac8cc2 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/which/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wide-align/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/279f47bedbc7bb9520c5f26216b2323e8f0e728e || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi-cjs/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi/node_modules/ansi-regex/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi/node_modules/ansi-styles/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi/node_modules/emoji-regex/LICENSE-MIT.txt %{buildroot}/usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi/node_modules/string-width/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrap-ansi/node_modules/strip-ansi/license %{buildroot}/usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/wrappy/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/write-file-atomic/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/13b22b5c5f89edc3f31e092b7298cd65687e7250 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/yallist/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/openssl/openssl/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/c5c8a68f4b80929b3e66f054f37bb9e16078847f || :
 cp %{_builddir}/node-v%{version}/deps/openssl/openssl/external/perl/Text-Template-1.56/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f12894289cb0f379f24b8d63e2e761dbcba1b216 || :
+cp %{_builddir}/node-v%{version}/deps/postject/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/73c0662d9bf3871afd33337f7527bbe76fccd911 || :
 cp %{_builddir}/node-v%{version}/deps/simdutf/LICENSE-MIT %{buildroot}/usr/share/package-licenses/nodejs/2e183a18db08cb0c43db26dc1478e36a6ff97587 || :
 cp %{_builddir}/node-v%{version}/deps/undici/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f5dca982a259634f86df3c69c54fe1c004085489 || :
 cp %{_builddir}/node-v%{version}/deps/undici/src/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f5dca982a259634f86df3c69c54fe1c004085489 || :
@@ -448,6 +472,7 @@ cp %{_builddir}/node-v%{version}/deps/v8/third_party/v8/builtins/LICENSE %{build
 cp %{_builddir}/node-v%{version}/deps/v8/third_party/wasm-api/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/node-v%{version}/deps/v8/third_party/zlib/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0f7174a2c02ad5a6951dcdca4a8c9acda981aa2e || :
 cp %{_builddir}/node-v%{version}/test/fixtures/postject-copy/node_modules/commander/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/63513188251d15fcdc716703fbee89be4a3a20e6 || :
+cp %{_builddir}/node-v%{version}/test/fixtures/postject-copy/node_modules/postject/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/73c0662d9bf3871afd33337f7527bbe76fccd911 || :
 cp %{_builddir}/node-v%{version}/test/fixtures/wpt/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/0585830014e372875ccfef2b115152df6cdd9a02 || :
 cp %{_builddir}/node-v%{version}/test/fixtures/wpt/resources/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/8ec4bf2b0f5cef7a4a6d22fe561514b2fedf9c89 || :
 cp %{_builddir}/node-v%{version}/test/fixtures/wpt/resources/webidl2/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/390d8d86451e742bbeae012348a08828a7939da0 || :
@@ -475,6 +500,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/corepack/LICENSE.md
 /usr/lib/node_modules/corepack/README.md
 /usr/lib/node_modules/corepack/dist/corepack.js
+/usr/lib/node_modules/corepack/dist/lib/corepack.cjs
 /usr/lib/node_modules/corepack/dist/npm.js
 /usr/lib/node_modules/corepack/dist/npx.js
 /usr/lib/node_modules/corepack/dist/pnpm.js
@@ -777,6 +803,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/lib/utils/audit-error.js
 /usr/lib/node_modules/npm/lib/utils/auth.js
 /usr/lib/node_modules/npm/lib/utils/cmd-list.js
+/usr/lib/node_modules/npm/lib/utils/completion.fish
 /usr/lib/node_modules/npm/lib/utils/completion.sh
 /usr/lib/node_modules/npm/lib/utils/completion/installed-deep.js
 /usr/lib/node_modules/npm/lib/utils/completion/installed-shallow.js
@@ -900,7 +927,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/@colors/colors/LICENSE
 /usr/lib/node_modules/npm/node_modules/@colors/colors/examples/normal-usage.js
 /usr/lib/node_modules/npm/node_modules/@colors/colors/examples/safe-string.js
-/usr/lib/node_modules/npm/node_modules/@colors/colors/index.d.ts
 /usr/lib/node_modules/npm/node_modules/@colors/colors/lib/colors.js
 /usr/lib/node_modules/npm/node_modules/@colors/colors/lib/custom/trap.js
 /usr/lib/node_modules/npm/node_modules/@colors/colors/lib/custom/zalgo.js
@@ -914,12 +940,34 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/@colors/colors/lib/system/has-flag.js
 /usr/lib/node_modules/npm/node_modules/@colors/colors/lib/system/supports-colors.js
 /usr/lib/node_modules/npm/node_modules/@colors/colors/package.json
-/usr/lib/node_modules/npm/node_modules/@colors/colors/safe.d.ts
 /usr/lib/node_modules/npm/node_modules/@colors/colors/safe.js
 /usr/lib/node_modules/npm/node_modules/@colors/colors/themes/generic-logging.js
 /usr/lib/node_modules/npm/node_modules/@gar/promisify/LICENSE.md
 /usr/lib/node_modules/npm/node_modules/@gar/promisify/index.js
 /usr/lib/node_modules/npm/node_modules/@gar/promisify/package.json
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/LICENSE.txt
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/build/index.cjs
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/build/index.d.cts
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/build/lib/index.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/index.mjs
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/ansi-regex/index.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/ansi-regex/license
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/ansi-regex/package.json
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/LICENSE-MIT.txt
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/RGI_Emoji.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/es2015/RGI_Emoji.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/es2015/index.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/es2015/text.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/index.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/package.json
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/emoji-regex/text.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/index.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/license
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/package.json
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/strip-ansi/index.js
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/strip-ansi/license
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/strip-ansi/package.json
+/usr/lib/node_modules/npm/node_modules/@isaacs/cliui/package.json
 /usr/lib/node_modules/npm/node_modules/@isaacs/string-locale-compare/LICENSE
 /usr/lib/node_modules/npm/node_modules/@isaacs/string-locale-compare/index.js
 /usr/lib/node_modules/npm/node_modules/@isaacs/string-locale-compare/package.json
@@ -947,10 +995,10 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/isolated-reifier.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/load-actual.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/load-virtual.js
-/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/load-workspaces.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/pruner.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/rebuild.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js
+/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/set-workspaces.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/audit-report.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/calc-dep-flags.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/can-place-dep.js
@@ -1054,6 +1102,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/@npmcli/node-gyp/package.json
 /usr/lib/node_modules/npm/node_modules/@npmcli/package-json/LICENSE
 /usr/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/index.js
+/usr/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/normalize.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/update-dependencies.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/update-scripts.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/package-json/lib/update-workspaces.js
@@ -1078,59 +1127,89 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/signal-manager.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/validate-options.js
 /usr/lib/node_modules/npm/node_modules/@npmcli/run-script/package.json
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/LICENSE
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/examples/is-default-value.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/examples/limit-long-syntax.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/examples/negate.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/examples/no-repeated-options.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/examples/ordered-options.mjs
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/examples/simple-hard-coded.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/index.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/internal/errors.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/internal/primordials.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/internal/util.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/internal/validators.js
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/package.json
+/usr/lib/node_modules/npm/node_modules/@pkgjs/parseargs/utils.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/LICENSE
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/envelope.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/google/api/field_behavior.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/google/protobuf/descriptor.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/google/protobuf/timestamp.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/sigstore_bundle.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/sigstore_common.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/sigstore_rekor.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/sigstore_trustroot.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/__generated__/sigstore_verification.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/dist/index.js
+/usr/lib/node_modules/npm/node_modules/@sigstore/protobuf-specs/package.json
 /usr/lib/node_modules/npm/node_modules/@tootallnate/once/LICENSE
-/usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/index.d.ts
 /usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/index.js
-/usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/index.js.map
-/usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/overloaded-parameters.d.ts
 /usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/overloaded-parameters.js
-/usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/overloaded-parameters.js.map
-/usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/types.d.ts
 /usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/types.js
-/usr/lib/node_modules/npm/node_modules/@tootallnate/once/dist/types.js.map
 /usr/lib/node_modules/npm/node_modules/@tootallnate/once/package.json
+/usr/lib/node_modules/npm/node_modules/@tufjs/canonical-json/LICENSE
+/usr/lib/node_modules/npm/node_modules/@tufjs/canonical-json/lib/index.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/canonical-json/package.json
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/LICENSE
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/base.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/delegations.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/error.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/file.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/index.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/key.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/metadata.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/role.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/root.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/signature.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/snapshot.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/targets.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/timestamp.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/utils/guard.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/utils/index.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/utils/key.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/utils/oid.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/utils/types.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/dist/utils/verify.js
+/usr/lib/node_modules/npm/node_modules/@tufjs/models/package.json
 /usr/lib/node_modules/npm/node_modules/abbrev/LICENSE
 /usr/lib/node_modules/npm/node_modules/abbrev/lib/index.js
 /usr/lib/node_modules/npm/node_modules/abbrev/package.json
 /usr/lib/node_modules/npm/node_modules/abort-controller/LICENSE
 /usr/lib/node_modules/npm/node_modules/abort-controller/browser.js
 /usr/lib/node_modules/npm/node_modules/abort-controller/browser.mjs
-/usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.d.ts
 /usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.js
-/usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.js.map
 /usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.mjs
-/usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.mjs.map
 /usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.umd.js
-/usr/lib/node_modules/npm/node_modules/abort-controller/dist/abort-controller.umd.js.map
 /usr/lib/node_modules/npm/node_modules/abort-controller/package.json
 /usr/lib/node_modules/npm/node_modules/abort-controller/polyfill.js
 /usr/lib/node_modules/npm/node_modules/abort-controller/polyfill.mjs
-/usr/lib/node_modules/npm/node_modules/agent-base/dist/src/index.d.ts
 /usr/lib/node_modules/npm/node_modules/agent-base/dist/src/index.js
-/usr/lib/node_modules/npm/node_modules/agent-base/dist/src/index.js.map
-/usr/lib/node_modules/npm/node_modules/agent-base/dist/src/promisify.d.ts
 /usr/lib/node_modules/npm/node_modules/agent-base/dist/src/promisify.js
-/usr/lib/node_modules/npm/node_modules/agent-base/dist/src/promisify.js.map
 /usr/lib/node_modules/npm/node_modules/agent-base/package.json
-/usr/lib/node_modules/npm/node_modules/agent-base/src/index.ts
-/usr/lib/node_modules/npm/node_modules/agent-base/src/promisify.ts
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/LICENSE
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/browser.js
-/usr/lib/node_modules/npm/node_modules/agentkeepalive/index.d.ts
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/index.js
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/lib/agent.js
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/lib/constants.js
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/lib/https_agent.js
 /usr/lib/node_modules/npm/node_modules/agentkeepalive/package.json
-/usr/lib/node_modules/npm/node_modules/aggregate-error/index.d.ts
 /usr/lib/node_modules/npm/node_modules/aggregate-error/index.js
 /usr/lib/node_modules/npm/node_modules/aggregate-error/license
 /usr/lib/node_modules/npm/node_modules/aggregate-error/package.json
-/usr/lib/node_modules/npm/node_modules/ansi-regex/index.d.ts
 /usr/lib/node_modules/npm/node_modules/ansi-regex/index.js
 /usr/lib/node_modules/npm/node_modules/ansi-regex/license
 /usr/lib/node_modules/npm/node_modules/ansi-regex/package.json
-/usr/lib/node_modules/npm/node_modules/ansi-styles/index.d.ts
 /usr/lib/node_modules/npm/node_modules/ansi-styles/index.js
 /usr/lib/node_modules/npm/node_modules/ansi-styles/license
 /usr/lib/node_modules/npm/node_modules/ansi-styles/package.json
@@ -1154,7 +1233,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/balanced-match/package.json
 /usr/lib/node_modules/npm/node_modules/base64-js/LICENSE
 /usr/lib/node_modules/npm/node_modules/base64-js/base64js.min.js
-/usr/lib/node_modules/npm/node_modules/base64-js/index.d.ts
 /usr/lib/node_modules/npm/node_modules/base64-js/index.js
 /usr/lib/node_modules/npm/node_modules/base64-js/package.json
 /usr/lib/node_modules/npm/node_modules/bin-links/LICENSE
@@ -1175,8 +1253,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/bin-links/lib/shim-bin.js
 /usr/lib/node_modules/npm/node_modules/bin-links/package.json
 /usr/lib/node_modules/npm/node_modules/binary-extensions/binary-extensions.json
-/usr/lib/node_modules/npm/node_modules/binary-extensions/binary-extensions.json.d.ts
-/usr/lib/node_modules/npm/node_modules/binary-extensions/index.d.ts
 /usr/lib/node_modules/npm/node_modules/binary-extensions/index.js
 /usr/lib/node_modules/npm/node_modules/binary-extensions/license
 /usr/lib/node_modules/npm/node_modules/binary-extensions/package.json
@@ -1185,7 +1261,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/brace-expansion/package.json
 /usr/lib/node_modules/npm/node_modules/buffer/AUTHORS.md
 /usr/lib/node_modules/npm/node_modules/buffer/LICENSE
-/usr/lib/node_modules/npm/node_modules/buffer/index.d.ts
 /usr/lib/node_modules/npm/node_modules/buffer/index.js
 /usr/lib/node_modules/npm/node_modules/buffer/package.json
 /usr/lib/node_modules/npm/node_modules/builtins/License
@@ -1204,11 +1279,9 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/cacache/lib/rm.js
 /usr/lib/node_modules/npm/node_modules/cacache/lib/util/glob.js
 /usr/lib/node_modules/npm/node_modules/cacache/lib/util/hash-to-segments.js
-/usr/lib/node_modules/npm/node_modules/cacache/lib/util/move-file.js
 /usr/lib/node_modules/npm/node_modules/cacache/lib/util/tmp.js
 /usr/lib/node_modules/npm/node_modules/cacache/lib/verify.js
 /usr/lib/node_modules/npm/node_modules/cacache/package.json
-/usr/lib/node_modules/npm/node_modules/chalk/index.d.ts
 /usr/lib/node_modules/npm/node_modules/chalk/license
 /usr/lib/node_modules/npm/node_modules/chalk/package.json
 /usr/lib/node_modules/npm/node_modules/chalk/source/index.js
@@ -1218,15 +1291,12 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/chownr/chownr.js
 /usr/lib/node_modules/npm/node_modules/chownr/package.json
 /usr/lib/node_modules/npm/node_modules/ci-info/LICENSE
-/usr/lib/node_modules/npm/node_modules/ci-info/index.d.ts
 /usr/lib/node_modules/npm/node_modules/ci-info/index.js
 /usr/lib/node_modules/npm/node_modules/ci-info/package.json
 /usr/lib/node_modules/npm/node_modules/ci-info/vendors.json
 /usr/lib/node_modules/npm/node_modules/cidr-regex/LICENSE
-/usr/lib/node_modules/npm/node_modules/cidr-regex/index.d.ts
 /usr/lib/node_modules/npm/node_modules/cidr-regex/index.js
 /usr/lib/node_modules/npm/node_modules/cidr-regex/package.json
-/usr/lib/node_modules/npm/node_modules/clean-stack/index.d.ts
 /usr/lib/node_modules/npm/node_modules/clean-stack/index.js
 /usr/lib/node_modules/npm/node_modules/clean-stack/license
 /usr/lib/node_modules/npm/node_modules/clean-stack/package.json
@@ -1236,7 +1306,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/cli-columns/package.json
 /usr/lib/node_modules/npm/node_modules/cli-columns/test.js
 /usr/lib/node_modules/npm/node_modules/cli-table3/LICENSE
-/usr/lib/node_modules/npm/node_modules/cli-table3/index.d.ts
 /usr/lib/node_modules/npm/node_modules/cli-table3/index.js
 /usr/lib/node_modules/npm/node_modules/cli-table3/package.json
 /usr/lib/node_modules/npm/node_modules/cli-table3/src/cell.js
@@ -1283,6 +1352,19 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/console-control-strings/LICENSE
 /usr/lib/node_modules/npm/node_modules/console-control-strings/index.js
 /usr/lib/node_modules/npm/node_modules/console-control-strings/package.json
+/usr/lib/node_modules/npm/node_modules/cross-spawn/LICENSE
+/usr/lib/node_modules/npm/node_modules/cross-spawn/index.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/lib/enoent.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/lib/parse.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/lib/util/escape.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/lib/util/readShebang.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/lib/util/resolveCommand.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/node_modules/which/LICENSE
+/usr/lib/node_modules/npm/node_modules/cross-spawn/node_modules/which/README.md
+/usr/lib/node_modules/npm/node_modules/cross-spawn/node_modules/which/bin/node-which
+/usr/lib/node_modules/npm/node_modules/cross-spawn/node_modules/which/package.json
+/usr/lib/node_modules/npm/node_modules/cross-spawn/node_modules/which/which.js
+/usr/lib/node_modules/npm/node_modules/cross-spawn/package.json
 /usr/lib/node_modules/npm/node_modules/cssesc/LICENSE-MIT.txt
 /usr/lib/node_modules/npm/node_modules/cssesc/README.md
 /usr/lib/node_modules/npm/node_modules/cssesc/bin/cssesc
@@ -1311,9 +1393,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/depd/LICENSE
 /usr/lib/node_modules/npm/node_modules/depd/index.js
 /usr/lib/node_modules/npm/node_modules/depd/lib/browser/index.js
-/usr/lib/node_modules/npm/node_modules/depd/lib/compat/callsite-tostring.js
-/usr/lib/node_modules/npm/node_modules/depd/lib/compat/event-listener-count.js
-/usr/lib/node_modules/npm/node_modules/depd/lib/compat/index.js
 /usr/lib/node_modules/npm/node_modules/depd/package.json
 /usr/lib/node_modules/npm/node_modules/diff/CONTRIBUTING.md
 /usr/lib/node_modules/npm/node_modules/diff/LICENSE
@@ -1342,17 +1421,17 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/diff/package.json
 /usr/lib/node_modules/npm/node_modules/diff/release-notes.md
 /usr/lib/node_modules/npm/node_modules/diff/runtime.js
+/usr/lib/node_modules/npm/node_modules/eastasianwidth/eastasianwidth.js
+/usr/lib/node_modules/npm/node_modules/eastasianwidth/package.json
 /usr/lib/node_modules/npm/node_modules/emoji-regex/LICENSE-MIT.txt
 /usr/lib/node_modules/npm/node_modules/emoji-regex/es2015/index.js
 /usr/lib/node_modules/npm/node_modules/emoji-regex/es2015/text.js
-/usr/lib/node_modules/npm/node_modules/emoji-regex/index.d.ts
 /usr/lib/node_modules/npm/node_modules/emoji-regex/index.js
 /usr/lib/node_modules/npm/node_modules/emoji-regex/package.json
 /usr/lib/node_modules/npm/node_modules/emoji-regex/text.js
 /usr/lib/node_modules/npm/node_modules/encoding/LICENSE
 /usr/lib/node_modules/npm/node_modules/encoding/lib/encoding.js
 /usr/lib/node_modules/npm/node_modules/encoding/package.json
-/usr/lib/node_modules/npm/node_modules/env-paths/index.d.ts
 /usr/lib/node_modules/npm/node_modules/env-paths/index.js
 /usr/lib/node_modules/npm/node_modules/env-paths/license
 /usr/lib/node_modules/npm/node_modules/env-paths/package.json
@@ -1362,12 +1441,8 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/err-code/package.json
 /usr/lib/node_modules/npm/node_modules/event-target-shim/LICENSE
 /usr/lib/node_modules/npm/node_modules/event-target-shim/dist/event-target-shim.js
-/usr/lib/node_modules/npm/node_modules/event-target-shim/dist/event-target-shim.js.map
 /usr/lib/node_modules/npm/node_modules/event-target-shim/dist/event-target-shim.mjs
-/usr/lib/node_modules/npm/node_modules/event-target-shim/dist/event-target-shim.mjs.map
 /usr/lib/node_modules/npm/node_modules/event-target-shim/dist/event-target-shim.umd.js
-/usr/lib/node_modules/npm/node_modules/event-target-shim/dist/event-target-shim.umd.js.map
-/usr/lib/node_modules/npm/node_modules/event-target-shim/index.d.ts
 /usr/lib/node_modules/npm/node_modules/event-target-shim/package.json
 /usr/lib/node_modules/npm/node_modules/events/.airtap.yml
 /usr/lib/node_modules/npm/node_modules/events/History.md
@@ -1400,14 +1475,20 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/events/tests/symbols.js
 /usr/lib/node_modules/npm/node_modules/fastest-levenshtein/LICENSE.md
 /usr/lib/node_modules/npm/node_modules/fastest-levenshtein/bench.js
-/usr/lib/node_modules/npm/node_modules/fastest-levenshtein/esm/mod.d.ts
-/usr/lib/node_modules/npm/node_modules/fastest-levenshtein/esm/mod.d.ts.map
 /usr/lib/node_modules/npm/node_modules/fastest-levenshtein/esm/mod.js
-/usr/lib/node_modules/npm/node_modules/fastest-levenshtein/mod.d.ts
 /usr/lib/node_modules/npm/node_modules/fastest-levenshtein/mod.js
 /usr/lib/node_modules/npm/node_modules/fastest-levenshtein/package.json
 /usr/lib/node_modules/npm/node_modules/fastest-levenshtein/test.js
-/usr/lib/node_modules/npm/node_modules/fastest-levenshtein/test.ts
+/usr/lib/node_modules/npm/node_modules/foreground-child/LICENSE
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/cjs/all-signals.js
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/cjs/index.js
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/cjs/watchdog.js
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/mjs/all-signals.js
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/foreground-child/dist/mjs/watchdog.js
+/usr/lib/node_modules/npm/node_modules/foreground-child/package.json
 /usr/lib/node_modules/npm/node_modules/fs-minipass/LICENSE
 /usr/lib/node_modules/npm/node_modules/fs-minipass/lib/index.js
 /usr/lib/node_modules/npm/node_modules/fs-minipass/package.json
@@ -1437,21 +1518,76 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/gauge/lib/wide-truncate.js
 /usr/lib/node_modules/npm/node_modules/gauge/package.json
 /usr/lib/node_modules/npm/node_modules/glob/LICENSE
-/usr/lib/node_modules/npm/node_modules/glob/common.js
-/usr/lib/node_modules/npm/node_modules/glob/glob.js
-/usr/lib/node_modules/npm/node_modules/glob/node_modules/minimatch/LICENSE
-/usr/lib/node_modules/npm/node_modules/glob/node_modules/minimatch/lib/path.js
-/usr/lib/node_modules/npm/node_modules/glob/node_modules/minimatch/minimatch.js
-/usr/lib/node_modules/npm/node_modules/glob/node_modules/minimatch/package.json
+/usr/lib/node_modules/npm/node_modules/glob/README.md
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/bin.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/bin.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/bin.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/bin.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/glob.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/glob.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/glob.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/glob.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/has-magic.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/has-magic.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/has-magic.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/has-magic.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/ignore.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/ignore.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/ignore.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/ignore.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/index.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/index.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/index.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/index.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/pattern.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/pattern.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/pattern.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/pattern.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/processor.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/processor.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/processor.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/processor.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/walker.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/walker.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/walker.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/cjs/src/walker.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/glob.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/glob.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/glob.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/glob.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/has-magic.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/has-magic.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/has-magic.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/has-magic.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/ignore.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/ignore.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/ignore.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/ignore.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/index.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/index.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/index.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/pattern.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/pattern.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/pattern.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/pattern.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/processor.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/processor.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/processor.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/processor.js.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/walker.d.ts
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/walker.d.ts.map
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/walker.js
+/usr/lib/node_modules/npm/node_modules/glob/dist/mjs/walker.js.map
 /usr/lib/node_modules/npm/node_modules/glob/package.json
-/usr/lib/node_modules/npm/node_modules/glob/sync.js
 /usr/lib/node_modules/npm/node_modules/graceful-fs/LICENSE
 /usr/lib/node_modules/npm/node_modules/graceful-fs/clone.js
 /usr/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js
 /usr/lib/node_modules/npm/node_modules/graceful-fs/legacy-streams.js
 /usr/lib/node_modules/npm/node_modules/graceful-fs/package.json
 /usr/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js
-/usr/lib/node_modules/npm/node_modules/has-flag/index.d.ts
 /usr/lib/node_modules/npm/node_modules/has-flag/index.js
 /usr/lib/node_modules/npm/node_modules/has-flag/license
 /usr/lib/node_modules/npm/node_modules/has-flag/package.json
@@ -1470,22 +1606,12 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/http-cache-semantics/LICENSE
 /usr/lib/node_modules/npm/node_modules/http-cache-semantics/index.js
 /usr/lib/node_modules/npm/node_modules/http-cache-semantics/package.json
-/usr/lib/node_modules/npm/node_modules/http-proxy-agent/dist/agent.d.ts
 /usr/lib/node_modules/npm/node_modules/http-proxy-agent/dist/agent.js
-/usr/lib/node_modules/npm/node_modules/http-proxy-agent/dist/agent.js.map
-/usr/lib/node_modules/npm/node_modules/http-proxy-agent/dist/index.d.ts
 /usr/lib/node_modules/npm/node_modules/http-proxy-agent/dist/index.js
-/usr/lib/node_modules/npm/node_modules/http-proxy-agent/dist/index.js.map
 /usr/lib/node_modules/npm/node_modules/http-proxy-agent/package.json
-/usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/agent.d.ts
 /usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/agent.js
-/usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/agent.js.map
-/usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/index.d.ts
 /usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/index.js
-/usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/index.js.map
-/usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/parse-proxy-response.d.ts
 /usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/parse-proxy-response.js
-/usr/lib/node_modules/npm/node_modules/https-proxy-agent/dist/parse-proxy-response.js.map
 /usr/lib/node_modules/npm/node_modules/https-proxy-agent/package.json
 /usr/lib/node_modules/npm/node_modules/humanize-ms/LICENSE
 /usr/lib/node_modules/npm/node_modules/humanize-ms/index.js
@@ -1510,12 +1636,10 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/iconv-lite/encodings/utf32.js
 /usr/lib/node_modules/npm/node_modules/iconv-lite/encodings/utf7.js
 /usr/lib/node_modules/npm/node_modules/iconv-lite/lib/bom-handling.js
-/usr/lib/node_modules/npm/node_modules/iconv-lite/lib/index.d.ts
 /usr/lib/node_modules/npm/node_modules/iconv-lite/lib/index.js
 /usr/lib/node_modules/npm/node_modules/iconv-lite/lib/streams.js
 /usr/lib/node_modules/npm/node_modules/iconv-lite/package.json
 /usr/lib/node_modules/npm/node_modules/ieee754/LICENSE
-/usr/lib/node_modules/npm/node_modules/ieee754/index.d.ts
 /usr/lib/node_modules/npm/node_modules/ieee754/index.js
 /usr/lib/node_modules/npm/node_modules/ieee754/package.json
 /usr/lib/node_modules/npm/node_modules/ignore-walk/LICENSE
@@ -1524,7 +1648,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/imurmurhash/imurmurhash.js
 /usr/lib/node_modules/npm/node_modules/imurmurhash/imurmurhash.min.js
 /usr/lib/node_modules/npm/node_modules/imurmurhash/package.json
-/usr/lib/node_modules/npm/node_modules/indent-string/index.d.ts
 /usr/lib/node_modules/npm/node_modules/indent-string/index.js
 /usr/lib/node_modules/npm/node_modules/indent-string/license
 /usr/lib/node_modules/npm/node_modules/indent-string/package.json
@@ -1545,21 +1668,18 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/init-package-json/lib/default-input.js
 /usr/lib/node_modules/npm/node_modules/init-package-json/lib/init-package-json.js
 /usr/lib/node_modules/npm/node_modules/init-package-json/package.json
-/usr/lib/node_modules/npm/node_modules/ip-regex/index.d.ts
 /usr/lib/node_modules/npm/node_modules/ip-regex/index.js
 /usr/lib/node_modules/npm/node_modules/ip-regex/license
 /usr/lib/node_modules/npm/node_modules/ip-regex/package.json
 /usr/lib/node_modules/npm/node_modules/ip/lib/ip.js
 /usr/lib/node_modules/npm/node_modules/ip/package.json
 /usr/lib/node_modules/npm/node_modules/is-cidr/LICENSE
-/usr/lib/node_modules/npm/node_modules/is-cidr/index.d.ts
 /usr/lib/node_modules/npm/node_modules/is-cidr/index.js
 /usr/lib/node_modules/npm/node_modules/is-cidr/package.json
 /usr/lib/node_modules/npm/node_modules/is-core-module/LICENSE
 /usr/lib/node_modules/npm/node_modules/is-core-module/core.json
 /usr/lib/node_modules/npm/node_modules/is-core-module/index.js
 /usr/lib/node_modules/npm/node_modules/is-core-module/package.json
-/usr/lib/node_modules/npm/node_modules/is-fullwidth-code-point/index.d.ts
 /usr/lib/node_modules/npm/node_modules/is-fullwidth-code-point/index.js
 /usr/lib/node_modules/npm/node_modules/is-fullwidth-code-point/license
 /usr/lib/node_modules/npm/node_modules/is-fullwidth-code-point/package.json
@@ -1572,6 +1692,14 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/isexe/mode.js
 /usr/lib/node_modules/npm/node_modules/isexe/package.json
 /usr/lib/node_modules/npm/node_modules/isexe/windows.js
+/usr/lib/node_modules/npm/node_modules/jackspeak/LICENSE.md
+/usr/lib/node_modules/npm/node_modules/jackspeak/dist/cjs/index.js
+/usr/lib/node_modules/npm/node_modules/jackspeak/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/jackspeak/dist/cjs/parse-args.js
+/usr/lib/node_modules/npm/node_modules/jackspeak/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/jackspeak/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/jackspeak/dist/mjs/parse-args.js
+/usr/lib/node_modules/npm/node_modules/jackspeak/package.json
 /usr/lib/node_modules/npm/node_modules/json-parse-even-better-errors/LICENSE.md
 /usr/lib/node_modules/npm/node_modules/json-parse-even-better-errors/lib/index.js
 /usr/lib/node_modules/npm/node_modules/json-parse-even-better-errors/package.json
@@ -1587,16 +1715,12 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/jsonparse/samplejson/basic2.json
 /usr/lib/node_modules/npm/node_modules/just-diff-apply/LICENSE
 /usr/lib/node_modules/npm/node_modules/just-diff-apply/index.cjs
-/usr/lib/node_modules/npm/node_modules/just-diff-apply/index.d.ts
 /usr/lib/node_modules/npm/node_modules/just-diff-apply/index.mjs
-/usr/lib/node_modules/npm/node_modules/just-diff-apply/index.tests.ts
 /usr/lib/node_modules/npm/node_modules/just-diff-apply/package.json
 /usr/lib/node_modules/npm/node_modules/just-diff-apply/rollup.config.js
 /usr/lib/node_modules/npm/node_modules/just-diff/LICENSE
 /usr/lib/node_modules/npm/node_modules/just-diff/index.cjs
-/usr/lib/node_modules/npm/node_modules/just-diff/index.d.ts
 /usr/lib/node_modules/npm/node_modules/just-diff/index.mjs
-/usr/lib/node_modules/npm/node_modules/just-diff/index.tests.ts
 /usr/lib/node_modules/npm/node_modules/just-diff/package.json
 /usr/lib/node_modules/npm/node_modules/just-diff/rollup.config.js
 /usr/lib/node_modules/npm/node_modules/libnpmaccess/LICENSE
@@ -1663,7 +1787,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/libnpmversion/lib/write-json.js
 /usr/lib/node_modules/npm/node_modules/libnpmversion/package.json
 /usr/lib/node_modules/npm/node_modules/lru-cache/LICENSE
-/usr/lib/node_modules/npm/node_modules/lru-cache/index.d.ts
 /usr/lib/node_modules/npm/node_modules/lru-cache/index.js
 /usr/lib/node_modules/npm/node_modules/lru-cache/index.mjs
 /usr/lib/node_modules/npm/node_modules/lru-cache/package.json
@@ -1682,22 +1805,24 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/make-fetch-happen/lib/remote.js
 /usr/lib/node_modules/npm/node_modules/make-fetch-happen/package.json
 /usr/lib/node_modules/npm/node_modules/minimatch/LICENSE
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/index-cjs.d.ts
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/index-cjs.js
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/index-cjs.js.map
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/index.d.ts
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/assert-valid-pattern.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/ast.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/brace-expressions.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/escape.js
 /usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/index.js
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/index.js.map
 /usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/package.json
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/index.d.ts
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/cjs/unescape.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/assert-valid-pattern.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/ast.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/brace-expressions.js
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/escape.js
 /usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/index.js
-/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/index.js.map
 /usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/minimatch/dist/mjs/unescape.js
 /usr/lib/node_modules/npm/node_modules/minimatch/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-collect/LICENSE
 /usr/lib/node_modules/npm/node_modules/minipass-collect/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-collect/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minipass-collect/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minipass-collect/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-collect/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-collect/package.json
@@ -1714,40 +1839,35 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/minipass-flush/LICENSE
 /usr/lib/node_modules/npm/node_modules/minipass-flush/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-flush/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minipass-flush/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minipass-flush/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-flush/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-flush/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-json-stream/LICENSE
 /usr/lib/node_modules/npm/node_modules/minipass-json-stream/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-json-stream/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minipass-json-stream/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minipass-json-stream/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-json-stream/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-json-stream/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-pipeline/LICENSE
 /usr/lib/node_modules/npm/node_modules/minipass-pipeline/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-pipeline/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minipass-pipeline/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minipass-pipeline/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-pipeline/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-pipeline/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-sized/LICENSE
 /usr/lib/node_modules/npm/node_modules/minipass-sized/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-sized/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minipass-sized/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minipass-sized/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/minipass-sized/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minipass-sized/package.json
 /usr/lib/node_modules/npm/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minipass/index.js
+/usr/lib/node_modules/npm/node_modules/minipass/index.mjs
 /usr/lib/node_modules/npm/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minizlib/LICENSE
 /usr/lib/node_modules/npm/node_modules/minizlib/constants.js
 /usr/lib/node_modules/npm/node_modules/minizlib/index.js
 /usr/lib/node_modules/npm/node_modules/minizlib/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/minizlib/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/minizlib/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/minizlib/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/minizlib/package.json
@@ -2000,7 +2120,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/minipass-fetch/lib/response.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/minipass-fetch/package.json
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/nopt/LICENSE
@@ -2035,6 +2154,10 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/readable-stream/package.json
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/readable-stream/readable-browser.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/readable-stream/readable.js
+/usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/signal-exit/LICENSE.txt
+/usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/signal-exit/index.js
+/usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/signal-exit/package.json
+/usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/signal-exit/signals.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/ssri/LICENSE.md
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/ssri/lib/index.js
 /usr/lib/node_modules/npm/node_modules/node-gyp/node_modules/ssri/package.json
@@ -2055,7 +2178,10 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/nopt/LICENSE
 /usr/lib/node_modules/npm/node_modules/nopt/README.md
 /usr/lib/node_modules/npm/node_modules/nopt/bin/nopt.js
+/usr/lib/node_modules/npm/node_modules/nopt/lib/debug.js
+/usr/lib/node_modules/npm/node_modules/nopt/lib/nopt-lib.js
 /usr/lib/node_modules/npm/node_modules/nopt/lib/nopt.js
+/usr/lib/node_modules/npm/node_modules/nopt/lib/type-defs.js
 /usr/lib/node_modules/npm/node_modules/nopt/package.json
 /usr/lib/node_modules/npm/node_modules/normalize-package-data/LICENSE
 /usr/lib/node_modules/npm/node_modules/normalize-package-data/lib/extract_description.js
@@ -2113,7 +2239,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/once/LICENSE
 /usr/lib/node_modules/npm/node_modules/once/once.js
 /usr/lib/node_modules/npm/node_modules/once/package.json
-/usr/lib/node_modules/npm/node_modules/p-map/index.d.ts
 /usr/lib/node_modules/npm/node_modules/p-map/index.js
 /usr/lib/node_modules/npm/node_modules/p-map/license
 /usr/lib/node_modules/npm/node_modules/p-map/package.json
@@ -2140,6 +2265,23 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/path-is-absolute/index.js
 /usr/lib/node_modules/npm/node_modules/path-is-absolute/license
 /usr/lib/node_modules/npm/node_modules/path-is-absolute/package.json
+/usr/lib/node_modules/npm/node_modules/path-key/index.js
+/usr/lib/node_modules/npm/node_modules/path-key/license
+/usr/lib/node_modules/npm/node_modules/path-key/package.json
+/usr/lib/node_modules/npm/node_modules/path-scurry/LICENSE.md
+/usr/lib/node_modules/npm/node_modules/path-scurry/dist/cjs/index.js
+/usr/lib/node_modules/npm/node_modules/path-scurry/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/path-scurry/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/path-scurry/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/LICENSE
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/dist/cjs/index.js
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/dist/cjs/index.min.js
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/dist/mjs/index.min.js
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/path-scurry/node_modules/lru-cache/package.json
+/usr/lib/node_modules/npm/node_modules/path-scurry/package.json
 /usr/lib/node_modules/npm/node_modules/postcss-selector-parser/API.md
 /usr/lib/node_modules/npm/node_modules/postcss-selector-parser/LICENSE-MIT
 /usr/lib/node_modules/npm/node_modules/postcss-selector-parser/dist/index.js
@@ -2173,7 +2315,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/postcss-selector-parser/dist/util/stripComments.js
 /usr/lib/node_modules/npm/node_modules/postcss-selector-parser/dist/util/unesc.js
 /usr/lib/node_modules/npm/node_modules/postcss-selector-parser/package.json
-/usr/lib/node_modules/npm/node_modules/postcss-selector-parser/postcss-selector-parser.d.ts
 /usr/lib/node_modules/npm/node_modules/proc-log/LICENSE
 /usr/lib/node_modules/npm/node_modules/proc-log/lib/index.js
 /usr/lib/node_modules/npm/node_modules/proc-log/package.json
@@ -2288,7 +2429,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/rimraf/package.json
 /usr/lib/node_modules/npm/node_modules/rimraf/rimraf.js
 /usr/lib/node_modules/npm/node_modules/safe-buffer/LICENSE
-/usr/lib/node_modules/npm/node_modules/safe-buffer/index.d.ts
 /usr/lib/node_modules/npm/node_modules/safe-buffer/index.js
 /usr/lib/node_modules/npm/node_modules/safe-buffer/package.json
 /usr/lib/node_modules/npm/node_modules/safer-buffer/LICENSE
@@ -2354,10 +2494,22 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/set-blocking/LICENSE.txt
 /usr/lib/node_modules/npm/node_modules/set-blocking/index.js
 /usr/lib/node_modules/npm/node_modules/set-blocking/package.json
+/usr/lib/node_modules/npm/node_modules/shebang-command/index.js
+/usr/lib/node_modules/npm/node_modules/shebang-command/license
+/usr/lib/node_modules/npm/node_modules/shebang-command/package.json
+/usr/lib/node_modules/npm/node_modules/shebang-regex/index.js
+/usr/lib/node_modules/npm/node_modules/shebang-regex/license
+/usr/lib/node_modules/npm/node_modules/shebang-regex/package.json
 /usr/lib/node_modules/npm/node_modules/signal-exit/LICENSE.txt
-/usr/lib/node_modules/npm/node_modules/signal-exit/index.js
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/cjs/browser.js
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/cjs/index.js
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/cjs/signals.js
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/mjs/browser.js
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/mjs/package.json
+/usr/lib/node_modules/npm/node_modules/signal-exit/dist/mjs/signals.js
 /usr/lib/node_modules/npm/node_modules/signal-exit/package.json
-/usr/lib/node_modules/npm/node_modules/signal-exit/signals.js
 /usr/lib/node_modules/npm/node_modules/sigstore/LICENSE
 /usr/lib/node_modules/npm/node_modules/sigstore/README.md
 /usr/lib/node_modules/npm/node_modules/sigstore/bin/sigstore.js
@@ -2375,16 +2527,20 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/ca/verify/signer.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/cli/index.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/cli/index.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/error.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/error.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/fulcio.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/fulcio.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/index.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/index.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/rekor.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/client/rekor.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/config.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/config.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/error.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/error.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/error.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/error.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/fulcio.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/fulcio.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/index.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/index.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/rekor.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/rekor.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/tsa.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/external/tsa.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/identity/ci.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/identity/ci.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/identity/index.d.ts
@@ -2425,30 +2581,16 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/tlog/verify/index.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/tlog/verify/set.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/tlog/verify/set.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/tsa/index.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/tsa/index.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/tuf/index.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/tuf/index.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/tuf/trustroot.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/tuf/trustroot.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/tuf/target.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/tuf/target.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/fetch.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/fetch.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/signature.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/signature.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/envelope.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/envelope.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/google/api/field_behavior.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/google/api/field_behavior.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/google/protobuf/descriptor.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/google/protobuf/descriptor.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/google/protobuf/timestamp.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/google/protobuf/timestamp.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_bundle.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_bundle.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_common.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_common.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_rekor.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_rekor.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_trustroot.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_trustroot.js
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_verification.d.ts
-/usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/__generated__/sigstore_verification.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/index.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/index.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/serialized.d.ts
@@ -2457,6 +2599,8 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/sigstore/validate.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/utility.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/types/utility.js
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/util/appdata.d.ts
+/usr/lib/node_modules/npm/node_modules/sigstore/dist/util/appdata.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/util/crypto.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/util/crypto.js
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/util/dsse.d.ts
@@ -2500,34 +2644,21 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/x509/verify.d.ts
 /usr/lib/node_modules/npm/node_modules/sigstore/dist/x509/verify.js
 /usr/lib/node_modules/npm/node_modules/sigstore/package.json
-/usr/lib/node_modules/npm/node_modules/sigstore/store/map.json
 /usr/lib/node_modules/npm/node_modules/sigstore/store/public-good-instance-root.json
 /usr/lib/node_modules/npm/node_modules/smart-buffer/LICENSE
 /usr/lib/node_modules/npm/node_modules/smart-buffer/build/smartbuffer.js
-/usr/lib/node_modules/npm/node_modules/smart-buffer/build/smartbuffer.js.map
 /usr/lib/node_modules/npm/node_modules/smart-buffer/build/utils.js
-/usr/lib/node_modules/npm/node_modules/smart-buffer/build/utils.js.map
 /usr/lib/node_modules/npm/node_modules/smart-buffer/docs/ROADMAP.md
 /usr/lib/node_modules/npm/node_modules/smart-buffer/package.json
-/usr/lib/node_modules/npm/node_modules/smart-buffer/typings/smartbuffer.d.ts
-/usr/lib/node_modules/npm/node_modules/smart-buffer/typings/utils.d.ts
-/usr/lib/node_modules/npm/node_modules/socks-proxy-agent/dist/index.d.ts
 /usr/lib/node_modules/npm/node_modules/socks-proxy-agent/dist/index.js
-/usr/lib/node_modules/npm/node_modules/socks-proxy-agent/dist/index.js.map
 /usr/lib/node_modules/npm/node_modules/socks-proxy-agent/package.json
 /usr/lib/node_modules/npm/node_modules/socks/LICENSE
 /usr/lib/node_modules/npm/node_modules/socks/build/client/socksclient.js
-/usr/lib/node_modules/npm/node_modules/socks/build/client/socksclient.js.map
 /usr/lib/node_modules/npm/node_modules/socks/build/common/constants.js
-/usr/lib/node_modules/npm/node_modules/socks/build/common/constants.js.map
 /usr/lib/node_modules/npm/node_modules/socks/build/common/helpers.js
-/usr/lib/node_modules/npm/node_modules/socks/build/common/helpers.js.map
 /usr/lib/node_modules/npm/node_modules/socks/build/common/receivebuffer.js
-/usr/lib/node_modules/npm/node_modules/socks/build/common/receivebuffer.js.map
 /usr/lib/node_modules/npm/node_modules/socks/build/common/util.js
-/usr/lib/node_modules/npm/node_modules/socks/build/common/util.js.map
 /usr/lib/node_modules/npm/node_modules/socks/build/index.js
-/usr/lib/node_modules/npm/node_modules/socks/build/index.js.map
 /usr/lib/node_modules/npm/node_modules/socks/docs/examples/index.md
 /usr/lib/node_modules/npm/node_modules/socks/docs/examples/javascript/associateExample.md
 /usr/lib/node_modules/npm/node_modules/socks/docs/examples/javascript/bindExample.md
@@ -2538,12 +2669,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/socks/docs/index.md
 /usr/lib/node_modules/npm/node_modules/socks/docs/migratingFromV1.md
 /usr/lib/node_modules/npm/node_modules/socks/package.json
-/usr/lib/node_modules/npm/node_modules/socks/typings/client/socksclient.d.ts
-/usr/lib/node_modules/npm/node_modules/socks/typings/common/constants.d.ts
-/usr/lib/node_modules/npm/node_modules/socks/typings/common/helpers.d.ts
-/usr/lib/node_modules/npm/node_modules/socks/typings/common/receivebuffer.d.ts
-/usr/lib/node_modules/npm/node_modules/socks/typings/common/util.d.ts
-/usr/lib/node_modules/npm/node_modules/socks/typings/index.d.ts
 /usr/lib/node_modules/npm/node_modules/spdx-correct/LICENSE
 /usr/lib/node_modules/npm/node_modules/spdx-correct/index.js
 /usr/lib/node_modules/npm/node_modules/spdx-correct/package.json
@@ -2561,14 +2686,18 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/ssri/LICENSE.md
 /usr/lib/node_modules/npm/node_modules/ssri/lib/index.js
 /usr/lib/node_modules/npm/node_modules/ssri/package.json
-/usr/lib/node_modules/npm/node_modules/string-width/index.d.ts
+/usr/lib/node_modules/npm/node_modules/string-width-cjs/index.js
+/usr/lib/node_modules/npm/node_modules/string-width-cjs/license
+/usr/lib/node_modules/npm/node_modules/string-width-cjs/package.json
 /usr/lib/node_modules/npm/node_modules/string-width/index.js
 /usr/lib/node_modules/npm/node_modules/string-width/license
 /usr/lib/node_modules/npm/node_modules/string-width/package.json
 /usr/lib/node_modules/npm/node_modules/string_decoder/LICENSE
 /usr/lib/node_modules/npm/node_modules/string_decoder/lib/string_decoder.js
 /usr/lib/node_modules/npm/node_modules/string_decoder/package.json
-/usr/lib/node_modules/npm/node_modules/strip-ansi/index.d.ts
+/usr/lib/node_modules/npm/node_modules/strip-ansi-cjs/index.js
+/usr/lib/node_modules/npm/node_modules/strip-ansi-cjs/license
+/usr/lib/node_modules/npm/node_modules/strip-ansi-cjs/package.json
 /usr/lib/node_modules/npm/node_modules/strip-ansi/index.js
 /usr/lib/node_modules/npm/node_modules/strip-ansi/license
 /usr/lib/node_modules/npm/node_modules/strip-ansi/package.json
@@ -2606,7 +2735,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/LICENSE
 /usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/index.js
 /usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/node_modules/minipass/LICENSE
-/usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/node_modules/minipass/index.d.ts
 /usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/node_modules/minipass/index.js
 /usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/node_modules/minipass/package.json
 /usr/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/package.json
@@ -2637,58 +2765,14 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/treeverse/lib/index.js
 /usr/lib/node_modules/npm/node_modules/treeverse/package.json
 /usr/lib/node_modules/npm/node_modules/tuf-js/LICENSE
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/error.d.ts
+/usr/lib/node_modules/npm/node_modules/tuf-js/dist/config.js
 /usr/lib/node_modules/npm/node_modules/tuf-js/dist/error.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/fetcher.d.ts
 /usr/lib/node_modules/npm/node_modules/tuf-js/dist/fetcher.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/index.d.ts
 /usr/lib/node_modules/npm/node_modules/tuf-js/dist/index.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/base.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/base.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/delegations.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/delegations.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/file.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/file.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/index.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/index.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/key.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/key.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/metadata.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/metadata.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/role.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/role.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/root.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/root.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/signature.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/signature.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/snapshot.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/snapshot.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/targets.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/targets.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/timestamp.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/models/timestamp.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/store.d.ts
 /usr/lib/node_modules/npm/node_modules/tuf-js/dist/store.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/updater.d.ts
 /usr/lib/node_modules/npm/node_modules/tuf-js/dist/updater.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/config.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/config.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/guard.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/guard.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/index.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/index.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/json.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/json.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/key.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/key.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/oid.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/oid.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/signer.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/signer.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/tmpfile.d.ts
 /usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/tmpfile.js
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/types.d.ts
-/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/types.js
+/usr/lib/node_modules/npm/node_modules/tuf-js/dist/utils/url.js
 /usr/lib/node_modules/npm/node_modules/tuf-js/package.json
 /usr/lib/node_modules/npm/node_modules/unique-filename/LICENSE
 /usr/lib/node_modules/npm/node_modules/unique-filename/lib/index.js
@@ -2708,7 +2792,10 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/validate-npm-package-name/lib/index.js
 /usr/lib/node_modules/npm/node_modules/validate-npm-package-name/package.json
 /usr/lib/node_modules/npm/node_modules/walk-up-path/LICENSE
-/usr/lib/node_modules/npm/node_modules/walk-up-path/index.js
+/usr/lib/node_modules/npm/node_modules/walk-up-path/dist/cjs/index.js
+/usr/lib/node_modules/npm/node_modules/walk-up-path/dist/cjs/package.json
+/usr/lib/node_modules/npm/node_modules/walk-up-path/dist/mjs/index.js
+/usr/lib/node_modules/npm/node_modules/walk-up-path/dist/mjs/package.json
 /usr/lib/node_modules/npm/node_modules/walk-up-path/package.json
 /usr/lib/node_modules/npm/node_modules/wcwidth/LICENSE
 /usr/lib/node_modules/npm/node_modules/wcwidth/combining.js
@@ -2723,6 +2810,32 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/lib/node_modules/npm/node_modules/wide-align/LICENSE
 /usr/lib/node_modules/npm/node_modules/wide-align/align.js
 /usr/lib/node_modules/npm/node_modules/wide-align/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi-cjs/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi-cjs/license
+/usr/lib/node_modules/npm/node_modules/wrap-ansi-cjs/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/license
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-regex/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-regex/license
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-regex/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-styles/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-styles/license
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-styles/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/LICENSE-MIT.txt
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/RGI_Emoji.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/es2015/RGI_Emoji.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/es2015/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/es2015/text.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/text.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/string-width/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/string-width/license
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/string-width/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/strip-ansi/index.js
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/strip-ansi/license
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/strip-ansi/package.json
+/usr/lib/node_modules/npm/node_modules/wrap-ansi/package.json
 /usr/lib/node_modules/npm/node_modules/wrappy/LICENSE
 /usr/lib/node_modules/npm/node_modules/wrappy/package.json
 /usr/lib/node_modules/npm/node_modules/wrappy/wrappy.js
@@ -2821,6 +2934,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/nodejs/026eb71e9797b03db9be931e33f34adeaba98b37
+/usr/share/package-licenses/nodejs/039fa81eb89fc5c892f5ce2d22ee6ac0a8503880
 /usr/share/package-licenses/nodejs/0478d8708f5ff5e49c150412201cb066a9b2006d
 /usr/share/package-licenses/nodejs/0585830014e372875ccfef2b115152df6cdd9a02
 /usr/share/package-licenses/nodejs/07a19ab9f07a8120e39ce09c4cd7703584241285
@@ -2832,6 +2946,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/0c94f137f6e0536db8cb2622a9dc84253b91b90c
 /usr/share/package-licenses/nodejs/0cc717c438df46ce5b953b6fc6bd4296251d34eb
 /usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181
+/usr/share/package-licenses/nodejs/0e6b923c1ce402e3cc5e8fda72e8f06fb03f730c
 /usr/share/package-licenses/nodejs/0f7174a2c02ad5a6951dcdca4a8c9acda981aa2e
 /usr/share/package-licenses/nodejs/0ffb767143ae572d4ecfda5bf2c7c5b28f5ab4c7
 /usr/share/package-licenses/nodejs/1167f0e28fe2db01e38e883aaf1e749fb09f9ceb
@@ -2848,7 +2963,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/1f3474ea2534827d050295aede1e340868483d12
 /usr/share/package-licenses/nodejs/1f3f949bd5fdef93522f7eaad5a31dd1cca02ca1
 /usr/share/package-licenses/nodejs/2366fde79952ae113a430c712bb46bd499f4be85
-/usr/share/package-licenses/nodejs/255667e4213ddb7198295c9775079c093a046f42
+/usr/share/package-licenses/nodejs/278c7bcbb6df0e2ad2b159a98e13d811cf1cafc4
 /usr/share/package-licenses/nodejs/279f47bedbc7bb9520c5f26216b2323e8f0e728e
 /usr/share/package-licenses/nodejs/2807f3f1c4cb33b214defc4c7ab72f7e4e70a305
 /usr/share/package-licenses/nodejs/290336f3da86f5f9a91a231b058c5588aaa9f606
@@ -2874,6 +2989,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/3a95918eb2fd98d94c314fb285433b1e44aec14a
 /usr/share/package-licenses/nodejs/3b0e8d58a362b1787ef3504fba4f593b22f3cee4
 /usr/share/package-licenses/nodejs/3b3f7641724fc82333c4124947fffa0ff46a5967
+/usr/share/package-licenses/nodejs/3c7fa8f7ddd06ce3e5334e7c660a8a4a4fe4e27b
 /usr/share/package-licenses/nodejs/3e7d524594d6d603a4b7e7d1abe8a7398e6b3837
 /usr/share/package-licenses/nodejs/40a44b074693a039e32ce1e263699a3f1be929f2
 /usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e
@@ -2882,7 +2998,6 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/438c90d4a6cd523884f0ab01a3f8ae07228fe4ed
 /usr/share/package-licenses/nodejs/45c1476739d0c028c845b2c90c401c3a4435de04
 /usr/share/package-licenses/nodejs/47edc4b4e929248ad6e423bf3a6736c320a3277c
-/usr/share/package-licenses/nodejs/4881ad2ec8eb2470a7049421047c6d076f48f1de
 /usr/share/package-licenses/nodejs/4ae7988e5af66b48b6d74a70fb30c4aedda141ee
 /usr/share/package-licenses/nodejs/4d9bde9ffbec8d7737496c973a08b1799dfb9a63
 /usr/share/package-licenses/nodejs/4f3ca49a793f6bb8465a3731fd965a128757b8ce
@@ -2904,12 +3019,14 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/6ca159a07c1a510f43f03c506b65c473d6edb190
 /usr/share/package-licenses/nodejs/6e7118376680e2881dd17a196f923d879b6c9a34
 /usr/share/package-licenses/nodejs/73a4b83ee6dc57f6baec7a105c4e842688200a3b
+/usr/share/package-licenses/nodejs/73c0662d9bf3871afd33337f7527bbe76fccd911
 /usr/share/package-licenses/nodejs/73efe5bda3791d234730ab0dcc48eb619a2e0ec6
 /usr/share/package-licenses/nodejs/73fec64fd8a5ceddbf65f705987a547c3678d981
 /usr/share/package-licenses/nodejs/7601ea2d9d1ee9c68dfd8f2d0bfffbb002565db9
 /usr/share/package-licenses/nodejs/79166a654db8904907e23bb644d32e1f1ff4554e
 /usr/share/package-licenses/nodejs/7c2355fec210edc01aa53d54e29b4a2dd9de51ab
 /usr/share/package-licenses/nodejs/7c782c64848c459d683d0a35844929561660096e
+/usr/share/package-licenses/nodejs/7df059597099bb7dcf25d2a9aedfaf4465f72d8d
 /usr/share/package-licenses/nodejs/7ed88ea8360e740c8d2a11fa4d20159273ec865a
 /usr/share/package-licenses/nodejs/7f6f3c0c08925232459e499d66231cb5da01d811
 /usr/share/package-licenses/nodejs/7f7ea058c7a8c91783d887e8e9eae1a6da6b4805
@@ -2938,6 +3055,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/b4676f230f4eead0c6f2cc6f00b0d03296b3b6bd
 /usr/share/package-licenses/nodejs/b850f0928ee250f0ad6cda6a7d2cf70784fdee6c
 /usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66
+/usr/share/package-licenses/nodejs/bf0549e84b42ee6c467e1f70cb5e075dc6ecd3c7
 /usr/share/package-licenses/nodejs/c045813a6c514f2d30d60a07c6aaf3603850e608
 /usr/share/package-licenses/nodejs/c3f5c7f37d0833769d9bb64475b3e589dbca4010
 /usr/share/package-licenses/nodejs/c4dbdbc12926d4d52c9156e690640f372615c234
@@ -2952,6 +3070,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/cfcb19ab237382e4ce1253c5f0e28ad153a3c77a
 /usr/share/package-licenses/nodejs/d3622fac093fe1cbcb4d8e8d35801600b681fc45
 /usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c
+/usr/share/package-licenses/nodejs/db85a00ab8daaf90050b20b30266c92a58cb71f2
 /usr/share/package-licenses/nodejs/dd164bc611bca7ba8ead40ec4c2851081e5a16b9
 /usr/share/package-licenses/nodejs/ddc86900b60a427d5065cd608b79ca29cd07c2fb
 /usr/share/package-licenses/nodejs/dfe418dc288edb0a4bb66af2ad88bd838c55e136
@@ -2969,8 +3088,10 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/f12894289cb0f379f24b8d63e2e761dbcba1b216
 /usr/share/package-licenses/nodejs/f5dca982a259634f86df3c69c54fe1c004085489
 /usr/share/package-licenses/nodejs/f62e826f0d70e5202b440e337382d1c3fabb05a8
+/usr/share/package-licenses/nodejs/f6eb8cd4b473c79e30106a7ca26c085ddcd8f266
 /usr/share/package-licenses/nodejs/f7eb77642fea2d18bc5b53d361802ca0fb698b3e
 /usr/share/package-licenses/nodejs/f87fe9863dc6d7d54117b1670ce07a85715dc465
+/usr/share/package-licenses/nodejs/f8e301ff400e9737f74e9f21beda3285aef077cd
 /usr/share/package-licenses/nodejs/f98aa1afa539a8f702d3477eb2ac35c7fe9d6127
 /usr/share/package-licenses/nodejs/fe739dc1a14a033680b3a404df26e98cca0b3ccf
 /usr/share/package-licenses/nodejs/ffffda22e521943bc894935cfae5dd16aaf35897
