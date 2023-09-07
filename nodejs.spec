@@ -4,10 +4,10 @@
 # Using build pattern: make
 #
 Name     : nodejs
-Version  : 18.17.0
-Release  : 147
-URL      : https://nodejs.org/dist/v18.17.0/node-v18.17.0.tar.xz
-Source0  : https://nodejs.org/dist/v18.17.0/node-v18.17.0.tar.xz
+Version  : 18.17.1
+Release  : 148
+URL      : https://nodejs.org/dist/v18.17.1/node-v18.17.1.tar.xz
+Source0  : https://nodejs.org/dist/v18.17.1/node-v18.17.1.tar.xz
 Summary  : 'Expand template text with embedded Perl'
 Group    : Development/Tools
 License  : Apache-2.0 Artistic-1.0 Artistic-1.0-Perl Artistic-2.0 BSD-2-Clause BSD-3-Clause CC-BY-4.0 CC0-1.0 GPL-1.0 GPL-2.0 HPND ISC MIT Python-2.0 Zlib bzip2-1.0.6
@@ -91,11 +91,11 @@ man components for the nodejs package.
 
 
 %prep
-%setup -q -n node-v18.17.0
-cd %{_builddir}/node-v18.17.0
+%setup -q -n node-v18.17.1
+cd %{_builddir}/node-v18.17.1
 %patch -P 1 -p1
 pushd ..
-cp -a node-v18.17.0 buildavx2
+cp -a node-v18.17.1 buildavx2
 popd
 
 %build
@@ -129,7 +129,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1690219616
+export SOURCE_DATE_EPOCH=1694106580
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -184,9 +184,10 @@ mod_path=%{buildroot}/usr/lib/node_modules
 PATH=$bin_path:$PATH NODE_PATH=$mod_path $bin_path/npm --version
 
 %install
-export SOURCE_DATE_EPOCH=1690219616
+export SOURCE_DATE_EPOCH=1694106580
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/nodejs
+cp %{_builddir}/node-v%{version}/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ef34f361649ef70a96328129f28d53baf67bd91c || :
 cp %{_builddir}/node-v%{version}/deps/acorn/acorn-walk/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42388860aa6d9bdaf299d53fa25a9e628101617e || :
 cp %{_builddir}/node-v%{version}/deps/acorn/acorn/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2aac288168c4f2de24ae5d115b7d699a3c2969a8 || :
 cp %{_builddir}/node-v%{version}/deps/ada/LICENSE-MIT %{buildroot}/usr/share/package-licenses/nodejs/278c7bcbb6df0e2ad2b159a98e13d811cf1cafc4 || :
@@ -196,6 +197,7 @@ cp %{_builddir}/node-v%{version}/deps/cjs-module-lexer/LICENSE %{buildroot}/usr/
 cp %{_builddir}/node-v%{version}/deps/corepack/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/cb1d8776e796d626d89171bec24b27311c9f931d || :
 cp %{_builddir}/node-v%{version}/deps/googletest/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/5a2314153eadadc69258a9429104cd11804ea304 || :
 cp %{_builddir}/node-v%{version}/deps/histogram/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/1f3f949bd5fdef93522f7eaad5a31dd1cca02ca1 || :
+cp %{_builddir}/node-v%{version}/deps/icu-small/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/72fda0ed619af74f616e867b2962b91346556182 || :
 cp %{_builddir}/node-v%{version}/deps/llhttp/LICENSE-MIT %{buildroot}/usr/share/package-licenses/nodejs/f7eb77642fea2d18bc5b53d361802ca0fb698b3e || :
 cp %{_builddir}/node-v%{version}/deps/minimatch/src/node_modules/balanced-match/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/09013c002fbdd686da2ec13c5a6d014f0a294ba9 || :
 cp %{_builddir}/node-v%{version}/deps/minimatch/src/node_modules/brace-expansion/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/433c2b9c71bad0957f4831068c2f5d973cef98a9 || :
@@ -227,7 +229,10 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/promise-spawn/LIC
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/query/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@npmcli/run-script/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/a6d614386e4974eef58b014810f00d4ed1881575 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@pkgjs/parseargs/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@sigstore/protobuf-specs/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/d3d4d2a95ecb3ad46be7910b056f936a20fefacf || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@tootallnate/once/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/e85adb91a5a9c5fe1a425aef38aa4a19eb66003c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@tufjs/canonical-json/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/138f23e4cc3bb584d7633218bcc2a773a6bbea59 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/@tufjs/models/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/138f23e4cc3bb584d7633218bcc2a773a6bbea59 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/abbrev/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/34d4249a8ef23970810fd3018b9399b1268dc052 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/abort-controller/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bf0549e84b42ee6c467e1f70cb5e075dc6ecd3c7 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/agentkeepalive/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/42fad0263e069b5043f2ac4784a779d1293c1b87 || :
@@ -268,6 +273,7 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/debug/LICENSE %{buildroot
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/debug/node_modules/ms/license.md %{buildroot}/usr/share/package-licenses/nodejs/884e84ebfddafd93b5bb814df076d2ebd1757ba8 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/defaults/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f6eb8cd4b473c79e30106a7ca26c085ddcd8f266 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/delegates/License %{buildroot}/usr/share/package-licenses/nodejs/9d414bd96ce8326fadc2f959781154de49af5b00 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/depd/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/b1fc406040905bbdc79a2e9187bc58aa4bbe9774 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/diff/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/f62e826f0d70e5202b440e337382d1c3fabb05a8 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/emoji-regex/LICENSE-MIT.txt %{buildroot}/usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/encoding/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2bb687a1c60ce016fd683abaaefc0de758753855 || :
@@ -275,10 +281,12 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/env-paths/license %{build
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/event-target-shim/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0e6b923c1ce402e3cc5e8fda72e8f06fb03f730c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/events/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ccc433071bf4eb0d1f06f5f0a5dbd2baabe3d885 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/fastest-levenshtein/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/7c782c64848c459d683d0a35844929561660096e || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/foreground-child/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/82e9868749f4cd746dd7d8f9ae91bbf84107a45f || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/fs-minipass/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/bb408e929caeb1731945b2ba54bc337edb87cc66 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/fs.realpath/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/cdf711a72ab90a1b193aea27e96cccf491e157e2 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/function-bind/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/290336f3da86f5f9a91a231b058c5588aaa9f606 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/gauge/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/0e28fd386ce58d4a8fcbf3561ddaacd630bc9181 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/glob/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/1696f694a30db0edfd6874f6d7794efbe23236fc || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/graceful-fs/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/13e4a8932f9e1c52c3feb92c88cc523701e15d41 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/has-flag/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/has-unicode/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/0478d8708f5ff5e49c150412201cb066a9b2006d || :
@@ -405,6 +413,8 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/semver/node_modules/lru-c
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/set-blocking/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/47edc4b4e929248ad6e423bf3a6736c320a3277c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/shebang-command/license %{buildroot}/usr/share/package-licenses/nodejs/db85a00ab8daaf90050b20b30266c92a58cb71f2 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/shebang-regex/license %{buildroot}/usr/share/package-licenses/nodejs/5aaf48196ddd4d007a3067aa7f30303ca8e4b29c || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/signal-exit/LICENSE.txt %{buildroot}/usr/share/package-licenses/nodejs/1188299cb9ec40e087dcfeba49791da556e21d22 || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/sigstore/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/d3d4d2a95ecb3ad46be7910b056f936a20fefacf || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/smart-buffer/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ecd174d7fc2c9c30751176131f7326063b36c29f || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/socks/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ddc86900b60a427d5065cd608b79ca29cd07c2fb || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/spdx-correct/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
@@ -422,6 +432,7 @@ cp %{_builddir}/node-v%{version}/deps/npm/node_modules/tar/node_modules/fs-minip
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/text-table/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/b2e68ce937c1f851926f7e10280cc93221d4f53c || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/tiny-relative-date/LICENSE.md %{buildroot}/usr/share/package-licenses/nodejs/68b0001a48da09fd06ad8b25cd457beb555a3f9d || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/treeverse/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/a0296af210b0f3dc0016cb0ceee446ea4b2de70b || :
+cp %{_builddir}/node-v%{version}/deps/npm/node_modules/tuf-js/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/138f23e4cc3bb584d7633218bcc2a773a6bbea59 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/unique-filename/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/ef2567c24676e0984660208c2bab9c2d6b713145 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/unique-slug/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/9d4786bbe2816e6c0cbf474f9f63946076d745b7 || :
 cp %{_builddir}/node-v%{version}/deps/npm/node_modules/util-deprecate/LICENSE %{buildroot}/usr/share/package-licenses/nodejs/cbde92577cb69b3b45dd33f8dc600732cf9e14cb || :
@@ -2950,10 +2961,13 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/0f7174a2c02ad5a6951dcdca4a8c9acda981aa2e
 /usr/share/package-licenses/nodejs/0ffb767143ae572d4ecfda5bf2c7c5b28f5ab4c7
 /usr/share/package-licenses/nodejs/1167f0e28fe2db01e38e883aaf1e749fb09f9ceb
+/usr/share/package-licenses/nodejs/1188299cb9ec40e087dcfeba49791da556e21d22
 /usr/share/package-licenses/nodejs/125d6f5a2d14e90bd60c0b6fa60c4376ecbffe54
+/usr/share/package-licenses/nodejs/138f23e4cc3bb584d7633218bcc2a773a6bbea59
 /usr/share/package-licenses/nodejs/13b22b5c5f89edc3f31e092b7298cd65687e7250
 /usr/share/package-licenses/nodejs/13e4a8932f9e1c52c3feb92c88cc523701e15d41
 /usr/share/package-licenses/nodejs/1433c1355cae4a748820ba1862b32bb231ac04b6
+/usr/share/package-licenses/nodejs/1696f694a30db0edfd6874f6d7794efbe23236fc
 /usr/share/package-licenses/nodejs/17c0d7c8e318823fdf0c64dfc95371c9337283de
 /usr/share/package-licenses/nodejs/17f75f0013affedfdb31a349ed8bc6ce683a9099
 /usr/share/package-licenses/nodejs/1937aa4955805181ce8585b66f3ad53974b1b1de
@@ -3018,6 +3032,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/68b0001a48da09fd06ad8b25cd457beb555a3f9d
 /usr/share/package-licenses/nodejs/6ca159a07c1a510f43f03c506b65c473d6edb190
 /usr/share/package-licenses/nodejs/6e7118376680e2881dd17a196f923d879b6c9a34
+/usr/share/package-licenses/nodejs/72fda0ed619af74f616e867b2962b91346556182
 /usr/share/package-licenses/nodejs/73a4b83ee6dc57f6baec7a105c4e842688200a3b
 /usr/share/package-licenses/nodejs/73c0662d9bf3871afd33337f7527bbe76fccd911
 /usr/share/package-licenses/nodejs/73efe5bda3791d234730ab0dcc48eb619a2e0ec6
@@ -3032,6 +3047,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/7f7ea058c7a8c91783d887e8e9eae1a6da6b4805
 /usr/share/package-licenses/nodejs/7f91fa2168f9fa91712d0f65ee16fb2a464de7ce
 /usr/share/package-licenses/nodejs/80674912e3033be358331910ba27d5812369c2fc
+/usr/share/package-licenses/nodejs/82e9868749f4cd746dd7d8f9ae91bbf84107a45f
 /usr/share/package-licenses/nodejs/884e84ebfddafd93b5bb814df076d2ebd1757ba8
 /usr/share/package-licenses/nodejs/8d434c9c1704b544a8b0652efbc323380b67f9bc
 /usr/share/package-licenses/nodejs/8ec4bf2b0f5cef7a4a6d22fe561514b2fedf9c89
@@ -3051,6 +3067,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/ab8d07f122b88e61e3c3596d78fe4a41ee3c2e13
 /usr/share/package-licenses/nodejs/ac646ea4ec65cd1feac459a194a15a52d147bdcf
 /usr/share/package-licenses/nodejs/afef273d1530a1b3f93526a3bbfa26dcec069688
+/usr/share/package-licenses/nodejs/b1fc406040905bbdc79a2e9187bc58aa4bbe9774
 /usr/share/package-licenses/nodejs/b2e68ce937c1f851926f7e10280cc93221d4f53c
 /usr/share/package-licenses/nodejs/b4676f230f4eead0c6f2cc6f00b0d03296b3b6bd
 /usr/share/package-licenses/nodejs/b850f0928ee250f0ad6cda6a7d2cf70784fdee6c
@@ -3069,6 +3086,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/ce72654dea747a8c04d1882a2015f63ef54813b5
 /usr/share/package-licenses/nodejs/cfcb19ab237382e4ce1253c5f0e28ad153a3c77a
 /usr/share/package-licenses/nodejs/d3622fac093fe1cbcb4d8e8d35801600b681fc45
+/usr/share/package-licenses/nodejs/d3d4d2a95ecb3ad46be7910b056f936a20fefacf
 /usr/share/package-licenses/nodejs/d7384cd3ed0c9614f87dde0f86568017f369814c
 /usr/share/package-licenses/nodejs/db85a00ab8daaf90050b20b30266c92a58cb71f2
 /usr/share/package-licenses/nodejs/dd164bc611bca7ba8ead40ec4c2851081e5a16b9
@@ -3084,6 +3102,7 @@ rm -f %{buildroot}*/usr/share/doc/nodejs/deps_npm_node_modules_ecc-jsbn_lib_LICE
 /usr/share/package-licenses/nodejs/ee54f5816e76951d69c639c71c6a04d0d52f54e2
 /usr/share/package-licenses/nodejs/ee7904173585b2506078dc8dac150638f1b3e537
 /usr/share/package-licenses/nodejs/ef2567c24676e0984660208c2bab9c2d6b713145
+/usr/share/package-licenses/nodejs/ef34f361649ef70a96328129f28d53baf67bd91c
 /usr/share/package-licenses/nodejs/f00e82a911110cd53aaebdb019a077388ffd252e
 /usr/share/package-licenses/nodejs/f12894289cb0f379f24b8d63e2e761dbcba1b216
 /usr/share/package-licenses/nodejs/f5dca982a259634f86df3c69c54fe1c004085489
