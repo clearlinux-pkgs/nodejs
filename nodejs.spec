@@ -7,7 +7,7 @@
 #
 Name     : nodejs
 Version  : 22.5.1
-Release  : 157
+Release  : 158
 URL      : https://nodejs.org/dist/v22.5.1/node-v22.5.1.tar.gz
 Source0  : https://nodejs.org/dist/v22.5.1/node-v22.5.1.tar.gz
 Summary  : 'Expand template text with embedded Perl'
